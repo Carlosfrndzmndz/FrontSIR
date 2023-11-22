@@ -1,36 +1,20 @@
 import { NavLink } from "react-router-dom"
 
-const AdminNavbar = () => {
+const ResidenteNavbar = () => {
     const activeStyle = 'underline bold underline-offset-4'
     return (
         <nav  className='flex justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light top-0'>
             <ul className='flex items-center gap-3'>
                 <li className='font-semibold text-lg'>
                     <NavLink
-                        to='/admin/home'
+                        to='/residente/home'
                     >
                         SIR
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
-                        to='/admin/residentes'
-                        className={({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        Residentes
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to='/admin/empleados'
-                        className={({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        Empleados
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to='/admin/reclamos'
+                        to='/residente/reclamos'
                         className={({isActive}) => isActive ? activeStyle : undefined}
                     >
                         Reclamos
@@ -38,15 +22,7 @@ const AdminNavbar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to='/admin/edificios'
-                        className={({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        Edificios
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to='/admin/unidades'
+                        to='/residente/unidades'
                         className={({isActive}) => isActive ? activeStyle : undefined}
                     >
                         Unidades
@@ -64,18 +40,10 @@ const AdminNavbar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to='/login'
+                        to='/'
                         className={({isActive}) => isActive ? activeStyle : undefined}
                     >
-                        Login
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to='/register'
-                        className={({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        Register
+                        Salir
                     </NavLink>
                 </li>
             </ul>
@@ -83,4 +51,4 @@ const AdminNavbar = () => {
     )
 }
 
-export default AdminNavbar
+export default ResidenteNavbar

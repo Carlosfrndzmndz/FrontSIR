@@ -1,21 +1,23 @@
 // Routes.js
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import LandingPage from '../landingPage';
 import Login from '../Login';
-import Register from '../Register';
 import NotFound from '../NotFound';
 import Perfil from '../Perfil';
-import AdminHome from '../Admin/Home';
-import ResidenteHome from '../Residentes/Home';
-import AdminReclamos from '../Admin/Reclamos';
-import AdminResidentes from '../Admin/Residentes';
-import AdminEmpleados from '../Admin/Empleados';
-import AdminEdificios from '../Admin/Edificios';
-import AdminUnidades from '../Admin/Unidades';
+import Register from '../Register';
+import AdminHome from '../Roles/Admin/Home';
+import ResidenteHome from '../Roles/Residentes/Home';
+import AdminEdificios from '../Roles/Admin/Edificios';
+import AdminEmpleados from '../Roles/Admin/Empleados';
+import AdminReclamos from '../Roles/Admin/Reclamos';
+import AdminResidentes from '../Roles/Admin/Residentes';
+import AdminUnidades from '../Roles/Admin/Unidades';
 
 const AppRoutes = () => {
   return (
     <Routes>
+      <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/perfil" element={<Perfil />} />
