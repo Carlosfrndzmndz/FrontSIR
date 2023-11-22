@@ -6,7 +6,10 @@ import Login from '../Login';
 import NotFound from '../NotFound';
 import Perfil from '../Perfil';
 import Register from '../Register';
+import SuperAdminHome from '../Roles/Superadmin/Home';
 import AdminHome from '../Roles/Admin/Home';
+import EmpleadoHome from '../Roles/Empleado/Home';
+import EncargadoHome from '../Roles/Encargado/Home';
 import ResidenteHome from '../Roles/Residentes/Home';
 import AdminEdificios from '../Roles/Admin/Edificios';
 import AdminEmpleados from '../Roles/Admin/Empleados';
@@ -21,7 +24,10 @@ const AppRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/perfil" element={<Perfil />} />
+      <Route path="/superadmin/home" element={<SuperAdminHome />} />
       <Route path="/admin/home" element={<AdminHome />} />
+      <Route path="/empleado/home" element={<EmpleadoHome />} />
+      <Route path="/encargado/home" element={<EncargadoHome />} />
       <Route path="/residente/home" element={<ResidenteHome />} />
       <Route path="/admin/residentes" element={<AdminResidentes />} />
       <Route path="/admin/empleados" element={<AdminEmpleados />} />
