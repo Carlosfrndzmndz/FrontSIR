@@ -1,22 +1,37 @@
-
-import axios from 'axios';
-
-const apiUrl = 'https://api.sir.net.ar/edificio/getAll';
-
+import axios from "axios";
 const getToken = () => localStorage.getItem('token');
 
+/*
 export const fetchData = async () => {
-  try {
-    const response = await axios({
-      headers: {
-        Authorization: `Bearer ${getToken()}`,
-      },
-      method: 'GET',
-      url: apiUrl,
+    const token = getToken();
+    if (!token) {
+        console.error('Token is missing.');
+        return;
+    }
+
+    const response = await axios.get('http://localhost:8080/edificio/getAll', {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+         // Agrega esta línea para incluir credenciales
+         withCredentials : true,
     });
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error;
-  }
-};
+    if (response.status === 200) {
+        return response.data;
+    } else {
+        console.error('Error fetching data:', response.status);
+    }
+}*/
+
+export const fetchData = async () => {
+    return [{
+        "codigo": 1,
+        "nombre": "sol radiante",
+        "direccion": "calle 848"
+    },
+    {
+        "codigo": 4,
+        "nombre": "luna radiante",
+        "direccion": "calle 173"
+    }];
+}

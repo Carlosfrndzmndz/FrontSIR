@@ -6,26 +6,10 @@ function AdminEdificios(){
     const [data, setData] = useState([]);
 
     useEffect(() => {
-      // Aquí deberías hacer la llamada a tu API y obtener los datos
-      // Puedes utilizar axios u otra biblioteca de tu elección
-      // Ejemplo ficticio:
-      // axios.get('tu_url_de_api').then(response => setData(response.data));
-
-      // Ejemplo con datos estáticos para demostración
-      const sampleData = [
-        {
-          "codigo": 1,
-          "nombre": "sol radiante",
-          "direccion": "calle 848"
-        },
-        {
-          "codigo": 4,
-          "nombre": "luna radiante",
-          "direccion": "calle 173"
+        const fetchAPI = async () => {
+            setData(await fetchData());
         }
-      ];
-
-      setData(sampleData);
+        fetchAPI();
     }, []);
 
 
