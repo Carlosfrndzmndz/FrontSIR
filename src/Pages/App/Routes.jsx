@@ -11,7 +11,7 @@ import AdminHome from '../Roles/Admin/Home';
 import EmpleadoHome from '../Roles/Empleado/Home';
 import EncargadoHome from '../Roles/Encargado/Home';
 import ResidenteHome from '../Roles/Residentes/Home';
-import AdminEdificios from '../Roles/Admin/Edificios';
+import AdminEdificios from '../../Components/Edificios/Abm';
 import AdminEmpleados from '../Roles/Admin/Empleados';
 import AdminReclamos from '../Roles/Admin/Reclamos';
 import AdminResidentes from '../Roles/Admin/Residentes';
@@ -32,7 +32,7 @@ const AppRoutes = () => {
       <Route path="/admin/residentes" element={<AdminResidentes />} />
       <Route path="/admin/empleados" element={<AdminEmpleados />} />
       <Route path="/admin/reclamos" element={<AdminReclamos />} />
-      <Route path="/admin/edificios" element={<AdminEdificios />} />
+      <Route path="/admin/edificios/abm" element={<AdminEdificios />} />
       <Route path="/admin/unidades" element={<AdminUnidades />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
