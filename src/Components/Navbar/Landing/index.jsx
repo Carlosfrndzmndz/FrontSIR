@@ -1,78 +1,47 @@
-import { NavLink } from "react-router-dom"
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const LandingNavbar = () => {
-    const activeStyle = 'underline bold underline-offset-4'
+    //const activeStyle = 'underline bold underline-offset-4'
     return (
-        <nav  className='flex justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light top-0'>
-            <ul className='flex items-center gap-3'>
-                <li className='font-semibold text-lg'>
-                    <NavLink
-                        to='/'
-                    >
-                        SIR
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to='/superadmin/home'
-                        className={({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        Super Admin
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to='/admin/home'
-                        className={({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        Admin
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to='/empleado/home'
-                        className={({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        Empleados
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to='/encargado/home'
-                        className={({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        Encargado
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to='/residente/home'
-                        className={({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        Residente
-                    </NavLink>
-                </li>
-            </ul>
-            <ul className='flex items-center gap-3'>
-                <li>
-                    <NavLink
-                        to='/login'
-                        className={({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        Login
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to='/register'
-                        className={({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        Register
-                    </NavLink>
-                </li>
-            </ul>
-        </nav>
-    )
+        // <nav  className='flex justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light top-0'>
+        <Navbar bg="light" expand="lg" fixed="top">
+            
+            <Nav className="mr-auto">
+                <NavLink to='/' className="navbar-brand">
+                    SIR
+                </NavLink>  
+
+                <NavLink to='/superadmin/home' className="navbar-brand">
+                    Super Admin
+                </NavLink>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+
+                <NavLink to='/admin/home' className="navbar-brand">
+                    Admin
+                </NavLink>
+
+                <NavLink to='/empleado/home' className="navbar-brand">
+                    Empleado
+                </NavLink>
+
+                <NavLink to='/encargado/home' className="navbar-brand">
+                    Encargado
+                </NavLink>
+                <NavLink to='/residente/home' className="navbar-brand">
+                    Residente
+                </NavLink>
+                </Navbar.Collapse>
+            </Nav>
+            <Nav >
+                <NavLink to='/register' className='nav-link'>Register</NavLink>
+                <NavLink to='/login' className='nav-link'>Login</NavLink>
+            </Nav>
+         </Navbar>
+    );
 }
 
 export default LandingNavbar

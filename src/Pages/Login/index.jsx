@@ -19,10 +19,11 @@ const LoginForm = () => {
       if (response && response.token) {
         // Éxito en el inicio de sesión
         console.log('Inicio de sesión exitoso. Token:', response.token);
-
-        // Guardar el token en localStorage si se marcó "Recuérdame"
+        localStorage.setItem('token', response.token);
+        // Guarda los datos de inicio de sesión en el almacenamiento local si el usuario lo solicitó
         if (rememberMe) {
-          localStorage.setItem('token', response.token);
+          localStorage.setItem('email', email);
+          localStorage.setItem('password', password);
         }
       } else {
         // Manejar error en el inicio de sesión

@@ -1,12 +1,10 @@
-import Layout from "../../../../Components/Layout";
+import Abm from "../../../../Components/Edificios/Abm";
 import AdminNavbar from "../../../../Components/Navbar/Admin";
 function AdminHome(){
     return(
         <>
             <AdminNavbar/>
-            <Layout>
-                <h1>Admin Home</h1>
-            </Layout>
+            <Abm/>
         </>
     )
 }

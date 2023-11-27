@@ -45,7 +45,7 @@ const eliminarEdificio = async (codigo) => {
     }
 
 const editarEdificio = async (edificio) => {
-    const response = await axios.put(rutaApi + '/modificar', edificio, {
+    const response = await axios.patch(rutaApi + '/modificar', edificio, {
         headers: {
         'Authorization': `Bearer ${getToken()}`
         }

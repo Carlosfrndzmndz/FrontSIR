@@ -1,10 +1,15 @@
 import Layout from "../../Components/Layout";
+import LandingNavbar from "../../Components/Navbar/Landing";
+
 
 function LandingPage() {
     return (
-        <Layout>
-            Landing Page
-        </Layout>
+        <>
+            <LandingNavbar/>
+            <Layout>
+                Landing Page
+            </Layout>
+        </>
     )
 }
 

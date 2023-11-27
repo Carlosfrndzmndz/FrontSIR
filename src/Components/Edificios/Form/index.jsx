@@ -14,8 +14,7 @@ const EdificioForm = ({ onSave, onDelete, edificioSeleccionado, onClose }) => {
     onClose();
   };
 
-  const handleEliminar = () => {
-    onDelete(edificio.codigo);
+  const handleCerrar = () => {
     onClose();
   };
 
@@ -38,8 +37,8 @@ const EdificioForm = ({ onSave, onDelete, edificioSeleccionado, onClose }) => {
       </Modal.Body>
       <Modal.Footer>
         {edificioSeleccionado && (
-          <Button variant="danger" onClick={handleEliminar}>
-            Eliminar
+          <Button variant="danger" onClick={handleCerrar}>
+            Cerrar
           </Button>
         )}
         <Button variant="primary" onClick={handleGuardar}>

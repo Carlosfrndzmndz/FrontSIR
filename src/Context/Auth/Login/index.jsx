@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiUrl = "http://localhost:8080/";
+const apiUrl = "https://api.sir.net.ar/";
 
 export const login = async (mail, password) => {
     const data = { mail, password };
@@ -14,7 +14,6 @@ export const login = async (mail, password) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                withCredentials: true,
             }
         );
 
