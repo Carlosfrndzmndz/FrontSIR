@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../../../assets/logo/Logo.svg'
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const AdminNavbar = () => {
     return (
@@ -18,7 +19,7 @@ const AdminNavbar = () => {
                     </NavLink>
                     <NavLink to='/admin/empleados' className='nav-link'>
                         Empleados
-                    </NavLink>              
+                    </NavLink>
                     <NavDropdown title="Edificios" id="basic-nav-dropdown">
                         <NavDropdown.Item><NavLink to='/admin/edificios/abm' className="nav-link">ABM</NavLink></NavDropdown.Item>
                         <NavDropdown.Item><NavLink to='/admin/edificios/dashboard' className="nav-link">Dashboard</NavLink></NavDropdown.Item>
@@ -29,7 +30,7 @@ const AdminNavbar = () => {
                 </Nav>
                 <Nav>
                     <NavLink to='/perfil' className='nav-link'>Perfil</NavLink>
-                    <NavLink to='/' className='nav-link'>Salir</NavLink>
+                    <NavLink to='/' className='nav-link'><LogoutIcon/></NavLink>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

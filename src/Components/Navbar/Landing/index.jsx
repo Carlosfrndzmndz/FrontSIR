@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../../../assets/logo/Logo.svg'
-
+import LoginIcon from '@mui/icons-material/Login';
 const LandingNavbar = () => {
     //const activeStyle = 'underline bold underline-offset-4'
     return (
@@ -38,7 +38,7 @@ const LandingNavbar = () => {
             </Nav>
             <Nav >
                 <NavLink to='/register' className='nav-link'>Register</NavLink>
-                <NavLink to='/login' className='nav-link'>Login</NavLink>
+                <NavLink to='/login' className='nav-link'><LoginIcon/></NavLink>
             </Nav>
          </Navbar>
     );

@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom"
 import { Navbar, Nav, NavDropdown } from "react-bootstrap"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../../../assets/logo/Logo.svg'
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const ResidenteNavbar = () => {
     return (
@@ -17,7 +18,7 @@ const ResidenteNavbar = () => {
             </Nav>
             <Nav style={{ marginRight: '20px'}}>
                 <NavLink to='/perfil' className='nav-link custom-link'>Perfil</NavLink>
-                <NavLink to='/' className='nav-link custom-link'>Salir</NavLink>
+                <NavLink to='/' className='nav-link custom-link'><LogoutIcon/></NavLink>
             </Nav>
         </Navbar.Collapse>
     </Navbar>

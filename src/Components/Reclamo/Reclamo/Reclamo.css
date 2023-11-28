@@ -1,0 +1,30 @@
+.contenedor-principal {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .tarjeta-detalle, .tarjeta-comentario {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  .tarjeta-comentario {
+    background-color: #f4f5f7;
+  }
+  
+  .respuestas {
+    margin-left: 20px;
+    border-left: 2px solid #ddd;
+    padding-left: 10px;
+  }
+  
+  .imagen-comentario {
+    max-width: 100px;
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+  

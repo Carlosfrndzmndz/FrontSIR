@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../../../assets/logo/Logo.svg'
-
+import LogoutIcon from '@mui/icons-material/Logout';
 const EmpleadoNavbar = () => {
     return (
         <Navbar bg="light" expand="lg" fixed="top">
@@ -32,7 +32,7 @@ const EmpleadoNavbar = () => {
                 </Nav>
                 <Nav>
                     <NavLink to='/perfil' className='nav-link'>Perfil</NavLink>
-                    <NavLink to='/' className='nav-link'>Salir</NavLink>
+                    <NavLink to='/' className='nav-link'><LogoutIcon/></NavLink>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
