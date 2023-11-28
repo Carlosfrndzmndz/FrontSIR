@@ -2,17 +2,17 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import logo from '../../../assets/logo/Logo.svg'
 
 const LandingNavbar = () => {
     //const activeStyle = 'underline bold underline-offset-4'
     return (
         // <nav  className='flex justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light top-0'>
         <Navbar bg="light" expand="lg" fixed="top">
-            
             <Nav className="mr-auto">
-                <NavLink to='/' className="navbar-brand">
-                    SIR
-                </NavLink>  
+                <NavLink to='/' className="navbar-brand" style={{ marginLeft: '20px' }}>
+                    <img src={logo} alt="Logo" className="logo-img" style={{ maxHeight: '40px' }} />
+                </NavLink>
 
                 <NavLink to='/superadmin/home' className="navbar-brand">
                     Super Admin

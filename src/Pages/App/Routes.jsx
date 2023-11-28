@@ -1,6 +1,7 @@
 // Routes.js
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import PrivateRoute from './PrivateRoute';
 import LandingPage from '../landingPage';
 import Login from '../Login';
 import NotFound from '../NotFound';
@@ -18,28 +19,45 @@ import AdminResidentes from '../Roles/Admin/Residentes';
 import AdminUnidades from '../Roles/Admin/Unidades';
 import EmpleadoEdificioAbm from '../Roles/Empleado/Edificio';
 import AdminAbm from '../Roles/Superadmin/Admin';
+import ResidenteReclamos from '../Roles/Residentes/Reclamos';
 
 const AppRoutes = () => {
   return (
     <Routes>
+      {/** General*/}
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/perfil" element={<Perfil />} />
-      <Route path="/superadmin/home" element={<SuperAdminHome />} />
-      <Route path="/superadmin/admin/abm" element={<AdminAbm/>} />
-      <Route path="/admin/home" element={<AdminHome />} />
-      <Route path="/empleado/home" element={<EmpleadoHome />} />
-      <Route path="/encargado/home" element={<EncargadoHome />} />
-      <Route path="/residente/home" element={<ResidenteHome />} />
-      <Route path="/admin/residentes" element={<AdminResidentes />} />
-      <Route path="/admin/empleados" element={<AdminEmpleados />} />
-      <Route path="/admin/reclamos" element={<AdminReclamos />} />
-      <Route path="/admin/edificios/abm" element={<AdminEdificios />} />
-      <Route path="/empleado/edificios/abm" element={<EmpleadoEdificioAbm />} />
-      <Route path="/admin/unidades" element={<AdminUnidades />} />
-      <Route path="/superadmin/admin" element={<SuperAdminHome/>} />
+      <Route path="/perfil" element={<PrivateRoute><Perfil /></PrivateRoute>} />
       <Route path="*" element={<NotFound />} />
+
+      {/** SuperAdmin*/} 
+      <Route path="/superadmin/home" element={<PrivateRoute><SuperAdminHome /></PrivateRoute>} />
+      <Route path="/superadmin/admin/abm" element={<PrivateRoute><AdminAbm/></PrivateRoute>} />
+      <Route path="/superadmin/admin" element={<PrivateRoute><SuperAdminHome/></PrivateRoute>} />
+
+      {/** Admin*/}
+      <Route path="/admin/home" element={<PrivateRoute><AdminHome /></PrivateRoute>} />
+      <Route path="/admin/residentes" element={<PrivateRoute><AdminResidentes /></PrivateRoute>} />
+      <Route path="/admin/empleados" element={<PrivateRoute><AdminEmpleados /></PrivateRoute>} />
+      <Route path="/admin/reclamos" element={<PrivateRoute><AdminReclamos /></PrivateRoute>} />
+      <Route path="/admin/edificios/abm" element={<PrivateRoute><AdminEdificios /></PrivateRoute>} />
+      <Route path="/admin/unidades" element={<PrivateRoute><AdminUnidades /></PrivateRoute>} />
+
+      {/** Empleado*/}
+      <Route path="/empleado/home" element={<PrivateRoute><EmpleadoHome /></PrivateRoute>} />
+      <Route path="/empleado/edificios/abm" element={<PrivateRoute><EmpleadoEdificioAbm /></PrivateRoute>} />
+
+      {/** Encargado*/}
+      <Route path="/encargado/home" element={<PrivateRoute><EncargadoHome /></PrivateRoute>} />
+      <Route path="/encargado/reclamos" element={<PrivateRoute><EncargadoHome /></PrivateRoute>} />
+
+      {/** Residente*/}
+      <Route path="/residente/home" element={<PrivateRoute><ResidenteHome /></PrivateRoute>} />
+      <Route path="/residente/reclamos" element={<PrivateRoute><ResidenteReclamos /></PrivateRoute>} />
+      <Route path="/residente/unidades" element={<PrivateRoute><ResidenteReclamos /></PrivateRoute>} />
+      
+  
     </Routes>
   );
 }

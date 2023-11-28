@@ -1,25 +1,23 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Nav, Navbar } from 'react-bootstrap';
+import './SuperAdmin.css';
+import logo from '../../../assets/logo/logo.svg';
 
 const SuperAdminNavbar = () => {
     return (
-        <Navbar bg="light" expand="lg" fixed="top">
-            <NavLink to='/superadmin/home' className="navbar-brand">
-                SIR
+        <Navbar bg="light" expand="lg" fixed="top" className="custom-navbar">
+            <NavLink to='/superadmin/home' className="navbar-brand" style={{ marginLeft: '20px' }}>
+                <img src={logo} alt="Logo" className="logo-img" style={{ maxHeight: '40px' }} />
             </NavLink>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                <NavDropdown title="Admin" id="basic-nav-dropdown">
-                    <NavDropdown.Item><NavLink to='/superadmin/admin/abm' className="nav-link">ABM</NavLink></NavDropdown.Item>
-                    <NavDropdown.Item><NavLink to='/superadmin/admin/dashboard' className="nav-link">Dashboard</NavLink></NavDropdown.Item>
-                </NavDropdown>
+                    <NavLink to='/superadmin/admin/abm' className='nav-link custom-link'>Admins</NavLink>
                 </Nav>
-                <Nav>
-                    <NavLink to='/perfil' className='nav-link'>Perfil</NavLink>
-                    <NavLink to='/' className='nav-link'>Salir</NavLink>
+                <Nav style={{ marginRight: '20px'}}>
+                    <NavLink to='/perfil' className='nav-link custom-link'>Perfil</NavLink>
+                    <NavLink to='/' className='nav-link custom-link'>Salir</NavLink>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

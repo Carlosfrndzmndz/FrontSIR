@@ -2,23 +2,24 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import logo from '../../../assets/logo/Logo.svg'
 
 const EmpleadoNavbar = () => {
     return (
         <Navbar bg="light" expand="lg" fixed="top">
-            <NavLink to='/admin/home' className="navbar-brand">
-                SIR
+            <NavLink to='/empleado/home' className="navbar-brand" style={{ marginLeft: '20px' }}>
+                <img src={logo} alt="Logo" className="logo-img" style={{ maxHeight: '40px' }} />
             </NavLink>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <NavLink to='/admin/residentes' className='nav-link'>
+                    <NavLink to='/empleado/residentes' className='nav-link'>
                         Residentes
                     </NavLink>
-                    <NavLink to='/admin/empleados' className='nav-link'>
+                    <NavLink to='/empleado/empleados' className='nav-link'>
                         Empleados
                     </NavLink>
-                    <NavLink to='/admin/reclamos' className='nav-link'>
+                    <NavLink to='/empleado/reclamos' className='nav-link'>
                         Reclamos
                     </NavLink>
                     <NavDropdown title="Edificios" id="basic-nav-dropdown">

@@ -1,54 +1,27 @@
 import { NavLink } from "react-router-dom"
+import { Navbar, Nav, NavDropdown } from "react-bootstrap"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import logo from '../../../assets/logo/Logo.svg'
 
 const ResidenteNavbar = () => {
-    const activeStyle = 'underline bold underline-offset-4'
     return (
-        <nav  className='flex justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light top-0'>
-            <ul className='flex items-center gap-3'>
-                <li className='font-semibold text-lg'>
-                    <NavLink
-                        to='/residente/home'
-                    >
-                        SIR
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to='/residente/reclamos'
-                        className={({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        Reclamos
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to='/residente/unidades'
-                        className={({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        Unidades
-                    </NavLink>
-                </li>
-            </ul>
-            <ul className='flex items-center gap-3'>
-                <li>
-                    <NavLink
-                        to='/perfil'
-                        className={({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        Perfil
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to='/'
-                        className={({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        Salir
-                    </NavLink>
-                </li>
-            </ul>
-        </nav>
-    )
-}
+        <Navbar bg="light" expand="lg" fixed="top" className="custom-navbar">
+        <NavLink to='/residente/home' className="navbar-brand" style={{ marginLeft: '20px' }}>
+            <img src={logo} alt="Logo" className="logo-img" style={{ maxHeight: '40px' }} />
+        </NavLink>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+                <NavLink to='/residente/reclamos' className='nav-link custom-link'>Reclamos</NavLink>
+                <NavLink to='/residente/unidades' className='nav-link custom-link'>Unidades</NavLink>
+            </Nav>
+            <Nav style={{ marginRight: '20px'}}>
+                <NavLink to='/perfil' className='nav-link custom-link'>Perfil</NavLink>
+                <NavLink to='/' className='nav-link custom-link'>Salir</NavLink>
+            </Nav>
+        </Navbar.Collapse>
+    </Navbar>
+);
+};
 
 export default ResidenteNavbar

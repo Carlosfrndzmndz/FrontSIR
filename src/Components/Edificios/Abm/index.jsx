@@ -68,10 +68,9 @@ const EdificiosPage = () => {
   };
 
   return (
-    <Container>
+    <Container className='mt-20'>
       <Row className="mt-3">
         <Col>
-          <h1>Lista de Edificios</h1>
           <Button variant="primary" onClick={handleAgregarEdificio} className="mb-3">
             Agregar Edificio
           </Button>

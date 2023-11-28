@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-const EdificioForm = ({ onSave, onDelete, edificioSeleccionado, onClose }) => {
+const EdificioForm = ({ onSave, edificioSeleccionado, onClose }) => {
   const [edificio, setEdificio] = useState(edificioSeleccionado || { nombre: '', direccion: '' });
 
   const handleInputChange = (e) => {

@@ -1,20 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 const AdminForm = ({ onSave, adminSeleccionado, onClose }) => {
-  const [persona, setPersona] = useState(adminSeleccionado || { nombre: '', tipoDocumento: '', numeroDocumento: '', rol:'Admin' });
+  const [admin, setAdmin] = useState({ nombre: '', tipoDocumento: '', numeroDocumento: '', rol: 'Admin' });
+
+  useEffect(() => {
+    if (adminSeleccionado) {
+      const tipo = adminSeleccionado.documento.substring(0, 3);
+      const numero = adminSeleccionado.documento.substring(3);
+      setAdmin({ ...adminSeleccionado, tipoDocumento: tipo, numeroDocumento: numero });
+    } else {
+      setAdmin({ nombre: '', tipoDocumento: '', numeroDocumento: '', rol: 'Admin' });
+    }
+  }, [adminSeleccionado]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setEdificio({ ...persona, [name]: value });
+    setAdmin({ ...admin, [name]: value });
   };
 
   const handleGuardar = () => {
-    onSave(persona);
-    onClose();
-  };
-
-  const handleCerrar = () => {
+    const adminAGuardar = {
+      ...admin,
+      documento: `${admin.tipoDocumento}${admin.numeroDocumento}`,
+    };
+    onSave(adminAGuardar);
     onClose();
   };
 
@@ -27,28 +37,48 @@ const AdminForm = ({ onSave, adminSeleccionado, onClose }) => {
         <Form>
           <Form.Group controlId="formTipoDocumento">
             <Form.Label>Tipo Documento</Form.Label>
-            <Form.Select aria-label="Default select example" name="tipoDocumento" value={persona.tipoDocumento} onChange={handleInputChange}>
-              <option>Tipo de Documento</option>
+            <Form.Select
+              aria-label="Default select example"
+              name="tipoDocumento"
+              value={admin.tipoDocumento}
+              onChange={handleInputChange}
+              disabled={!!adminSeleccionado}
+            >
+              <option value="">Tipo de Documento</option>
               <option value="DNI">DNI</option>
-              <option value="LE ">LE</option>
-              <option value="LC ">LC</option>
-              <option value="CI ">CI</option>
+              <option value="LE">LE</option>
+              <option value="LC">LC</option>
+              <option value="CI">CI</option>
               <option value="Pas">Pasaporte</option>
             </Form.Select>
-            <Form.Label>Documento</Form.Label>
-            <Form.Control type="text" placeholder="Ingrese el Documento" name="Documento" value={persona.numeroDocumento} onChange={handleInputChange} />          </Form.Group>
+          </Form.Group>
+          <Form.Group controlId="formNumeroDocumento">
+            <Form.Label>Número de Documento</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Ingrese el número de documento"
+              name="numeroDocumento"
+              value={admin.numeroDocumento}
+              onChange={handleInputChange}
+              disabled={!!adminSeleccionado} // Deshabilitar este campo también al editar
+            />
+          </Form.Group>
           <Form.Group controlId="formNombre">
             <Form.Label>Nombre</Form.Label>
-            <Form.Control type="text" placeholder="Ingrese el nombre" name="nombre" value={persona.nombre} onChange={handleInputChange} />
+            <Form.Control
+              type="text"
+              placeholder="Ingrese el nombre"
+              name="nombre"
+              value={admin.nombre}
+              onChange={handleInputChange}
+            />
           </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        {adminSeleccionado && (
-          <Button variant="danger" onClick={handleCerrar}>
-            Cerrar
-          </Button>
-        )}
+        <Button variant="secondary" onClick={onClose}>
+          Cerrar
+        </Button>
         <Button variant="primary" onClick={handleGuardar}>
           {adminSeleccionado ? 'Actualizar' : 'Guardar'}
         </Button>

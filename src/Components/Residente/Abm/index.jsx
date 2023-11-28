@@ -2,67 +2,67 @@ import React, { useState, useEffect } from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import AdminForm from '../Form';
 import LoadingSkeleton from '../../../Components/LoadingSkeleton';
-import { obtenerAdmins, agregarAdmin, eliminarAdmin, editarAdmin } from '../../../Context/Admins';
+import { obtenerAdmins, agregarAdmin, editarAdmin, eliminarAdmin } from '../../../Services/adminService';
 
-const AdminAbmPage = () => {
-  const [admins, setAdmins] = useState([]);
-  const [adminSeleccionado, setAdminSeleccionado] = useState(null);
+const ReclamoAbmPage = () => {
+  const [reclamo, setReclamo] = useState([]);
+  const [reclamoSeleccionado, setReclamoSeleccionado] = useState(null);
   const [mostrarModal, setMostrarModal] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchAdmin = async () => {
+    const fetchReclamo = async () => {
       try {
-        const data = await obtenerAdmins();
-        setAdmins(data);
+        const data = await obtenerReclamo();
+        setReclamo(data);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
-    fetchAdmin();
+    fetchReclamo();
   }, []);
 
-  const handleGuardarAdmin = async (admin) => {
+  const handleGuardarAdmin = async (reclamo) => {
     try {
-      if (adminSeleccionado) {
-        await editarAdmin(admin); // Editar admin existente
+      if (reclamoSeleccionado) {
+        await editarAdmin(reclamo); // Editar admin existente
       } else {
-        await agregarAdmin(admin); // Agregar nuevo admin
+        await agregarAdmin(reclamo); // Agregar nuevo admin
       }
 
-      const data = await obtenerAdmins();
-      setAdmins(data);
+      const data = await obtenerReclamo();
+      setReclamo(data);
       setMostrarModal(false);
     } catch (error) {
       console.error('Error saving admin:', error);
     }
   };
 
-  const handleEliminarAdmin = async (documento) => {
+  const handleEliminarReclamo = async (documento) => {
     try {
-      await eliminarAdmin(documento);
-      const data = await obtenerAdmins();
-      setAdmins(data);
+      await eliminarReclamo(documento);
+      const data = await obtenerReclamo();
+      setReclamo(data);
     } catch (error) {
       console.error('Error deleting admin:', error);
     }
   };
 
-  const handleEditarAdmin = (documento) => {
-    const adminEditar = admins.find((admin) => admin.documento === documento);
-    setAdminSeleccionado(adminEditar);
+  const handleEditarReclamo = (documento) => {
+    const reclamoEditar = reclamo.find((reclamo) => admin.documento === documento);
+    setReclamoSeleccionado(reclamoEditar);
     setMostrarModal(true);
   };
 
-  const handleAgregarAdmin = () => {
-    setAdminSeleccionado(null);
+  const handleAgregarReclamo = () => {
+    setReclamoSeleccionado(null);
     setMostrarModal(true);
   };
 
   const handleCerrarModal = () => {
-    setAdminSeleccionado(null);
+    setReclamoSeleccionado(null);
     setMostrarModal(false);
   };
 
@@ -70,8 +70,8 @@ const AdminAbmPage = () => {
     <Container className='mt-20'>
       <Row className="mt-3">
         <Col>
-          <Button variant="primary" onClick={handleAgregarAdmin} className="mb-3">
-            Agregar Admin
+          <Button variant="primary" onClick={handleAgregarReclamo} className="mb-3">
+            Agregar Reclamo
           </Button>
         </Col>
       </Row>
@@ -87,10 +87,10 @@ const AdminAbmPage = () => {
                   <div className="card-body">
                     <h5 className="card-title">{admin.nombre}</h5>
                     <p className="card-text">{admin.documento}</p>
-                    <Button variant="outline-primary" onClick={() => handleEditarAdmin(admin.documento)}>
+                    <Button variant="outline-primary" onClick={() => handleEditarReclamo(admin.documento)}>
                       Editar
                     </Button>
-                    <Button variant="outline-danger" onClick={() => handleEliminarAdmin(admin.documento)} className="ml-2">
+                    <Button variant="outline-danger" onClick={() => handleEliminarReclamo(admin.documento)} className="ml-2">
                       Eliminar
                     </Button>
                   </div>
@@ -102,10 +102,10 @@ const AdminAbmPage = () => {
       </Row>
   
       {mostrarModal && (
-        <AdminForm onSave={handleGuardarAdmin} onDelete={handleEliminarAdmin} adminSeleccionado={adminSeleccionado} onClose={handleCerrarModal} />
+        <ReclamoAbmPage onSave={handleGuardarReclamo} onDelete={handleEliminarReclamo} reclamoSeleccionado={reclamoSeleccionado} onClose={handleCerrarModal} />
       )}
     </Container>
   );
 };
 
-export default AdminAbmPage;
+export default ReclamoAbmPage;

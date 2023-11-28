@@ -1,39 +1,40 @@
-// Importa tus bibliotecas y componentes necesarios
-
-import Layout from "../../Components/Layout";
 import React, { useState } from 'react';
 import { login } from '../../Context/Auth/Login';
+import { getRol } from '../../Context/Persona';
+import Layout from "../../Components/Layout";
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false); // Nuevo estado para indicar carga
+  const [loading, setLoading] = useState(false);
+ // Hook para manejar la navegación
 
   const handleLogin = async () => {
     try {
-      setLoading(true); // Establecer el estado de carga a true al iniciar sesión
+      setLoading(true);
       const response = await login(email, password);
 
       if (response && response.token) {
-        // Éxito en el inicio de sesión
         console.log('Inicio de sesión exitoso. Token:', response.token);
         localStorage.setItem('token', response.token);
-        // Guarda los datos de inicio de sesión en el almacenamiento local si el usuario lo solicitó
+
+        // Redirige según el rol del usuario
+        const userRole = await getRol(email); 
+        const ruta = '/'+userRole+'/home';
+        window.location.href = ruta;
         if (rememberMe) {
           localStorage.setItem('email', email);
           localStorage.setItem('password', password);
         }
       } else {
-        // Manejar error en el inicio de sesión
         console.log('Error en el inicio de sesión');
       }
     } catch (error) {
-      // Manejar errores de la llamada a la API
       console.error('Error al llamar a la API:', error);
     } finally {
-      setLoading(false); // Establecer el estado de carga a false después de la respuesta
+      setLoading(false);
     }
   };
 
@@ -47,7 +48,6 @@ const LoginForm = () => {
               type="email"
               id="email"
               className="border rounded-md w-full py-2 px-3 focus:outline-none focus:border-blue-500"
-              style={{ minWidth: 0 }}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -117,14 +117,13 @@ const LoginForm = () => {
             <label htmlFor="rememberMe" className="text-gray-700 text-sm font-bold">Recuérdame</label>
           </div>
           <div className="mb-6">
-            {/* Enlace para recuperar contraseña */}
             <a href="#" className="text-blue-500 text-sm">¿Olvidaste tu contraseña?</a>
           </div>
           <button
             type="button"
             className={`bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
             onClick={handleLogin}
-            disabled={loading} // Deshabilitar el botón durante la carga
+            disabled={loading}
           >
             {loading ? (
               <div className="flex items-center">
