@@ -4,6 +4,7 @@ import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../../../assets/logo/Logo.svg'
 import LogoutIcon from '@mui/icons-material/Logout';
+import PersonIcon from '@mui/icons-material/Person';
 const EncargadoNavbar = () => {
     return (
         <Navbar bg="light" expand="lg" fixed="top">
@@ -19,7 +20,7 @@ const EncargadoNavbar = () => {
                 </NavDropdown>
                 </Nav>
                 <Nav>
-                    <NavLink to='/perfil' className='nav-link'>Perfil</NavLink>
+                    <NavLink to='/perfil' className='nav-link'><PersonIcon/></NavLink>
                     <NavLink to='/' className='nav-link'><LogoutIcon/></NavLink>
                 </Nav>
             </Navbar.Collapse>

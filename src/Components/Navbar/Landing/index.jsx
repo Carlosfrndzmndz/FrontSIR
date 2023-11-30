@@ -4,6 +4,7 @@ import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../../../assets/logo/Logo.svg'
 import LoginIcon from '@mui/icons-material/Login';
+
 const LandingNavbar = () => {
     //const activeStyle = 'underline bold underline-offset-4'
     return (

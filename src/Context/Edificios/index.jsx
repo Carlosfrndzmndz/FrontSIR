@@ -54,4 +54,14 @@ const editarEdificio = async (edificio) => {
     return response.data;
     }
 
-export {obtenerEdificios, agregarEdificio, eliminarEdificio, editarEdificio };
+const unidadesPorEdificio = async (codigo) => {
+    const response = await axios.get(rutaApi + '/getUnidades?codigo=' + codigo, {
+        headers: {
+            'Authorization': `Bearer ${getToken()}`
+        }
+    });
+
+    return response.data;
+}
+
+export {obtenerEdificios, agregarEdificio, eliminarEdificio, editarEdificio, unidadesPorEdificio};

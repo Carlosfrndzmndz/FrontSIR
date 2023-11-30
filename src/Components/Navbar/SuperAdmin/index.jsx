@@ -4,6 +4,7 @@ import { Nav, Navbar } from 'react-bootstrap';
 import './SuperAdmin.css';
 import logo from '../../../assets/logo/logo.svg';
 import LogoutIcon from '@mui/icons-material/Logout';
+import PersonIcon from '@mui/icons-material/Person';
 
 const SuperAdminNavbar = () => {
     return (
@@ -17,7 +18,7 @@ const SuperAdminNavbar = () => {
                     <NavLink to='/superadmin/admin/abm' className='nav-link custom-link'>Admins</NavLink>
                 </Nav>
                 <Nav style={{ marginRight: '20px'}}>
-                    <NavLink to='/perfil' className='nav-link custom-link'>Perfil</NavLink>
+                    <NavLink to='/perfil' className='nav-link custom-link'><PersonIcon/></NavLink>
                     <NavLink to='/' className='nav-link custom-link'><LogoutIcon/></NavLink>
                 </Nav>
             </Navbar.Collapse>

@@ -4,6 +4,7 @@ import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../../../assets/logo/Logo.svg'
 import LogoutIcon from '@mui/icons-material/Logout';
+import PersonIcon from '@mui/icons-material/Person';
 const EmpleadoNavbar = () => {
     return (
         <Navbar bg="light" expand="lg" fixed="top">
@@ -26,12 +27,32 @@ const EmpleadoNavbar = () => {
                         <NavDropdown.Item><NavLink to='/empleado/edificios/abm' className="nav-link">ABM</NavLink></NavDropdown.Item>
                         <NavDropdown.Item><NavLink to='/admin/edificios/dashboard' className="nav-link">Dashboard</NavLink></NavDropdown.Item>
                     </NavDropdown>
-                    <NavLink to='/admin/unidades' className='nav-link'>
-                        Unidades
-                    </NavLink>
+                    <NavDropdown title="Gestionar Unidad" id="basic-nav-dropdown">
+                        <NavDropdown.Item>
+                            <NavLink to='/empleado/unidad/abm' className="nav-link">Listado de unidades</NavLink>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <NavLink to='/empleado/unidad/transferencia-unidad' className="nav-link">Transferencia de unidad</NavLink>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <NavLink to='/empleado/unidad/alquiler' className="nav-link">Alquiler de unidad</NavLink>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <NavLink to='/empleado/unidad/liberar' className="nav-link">Liberar unidad</NavLink>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <NavLink to='/empleado/unidad/habitar' className="nav-link">Habitar unidad</NavLink>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <NavLink to='/empleado/unidad/agregar-dueno' className="nav-link">Agregar Dueño</NavLink>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <NavLink to='/empleado/unidad/agregar-inquilino' className="nav-link">Agregar inquilino</NavLink>
+                        </NavDropdown.Item>
+                    </NavDropdown>
                 </Nav>
                 <Nav>
-                    <NavLink to='/perfil' className='nav-link'>Perfil</NavLink>
+                    <NavLink to='/perfil' className='nav-link'><PersonIcon/></NavLink>
                     <NavLink to='/' className='nav-link'><LogoutIcon/></NavLink>
                 </Nav>
             </Navbar.Collapse>

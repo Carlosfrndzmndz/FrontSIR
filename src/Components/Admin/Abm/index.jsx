@@ -3,7 +3,8 @@ import { Button, Container, Row, Col } from 'react-bootstrap';
 import AdminForm from '../Form';
 import LoadingSkeleton from '../../../Components/LoadingSkeleton';
 import { obtenerAdmins, agregarAdmin, eliminarAdmin, editarAdmin } from '../../../Context/Admins';
-
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import Layout from '../../Layout';
 const AdminAbmPage = () => {
   const [admins, setAdmins] = useState([]);
   const [adminSeleccionado, setAdminSeleccionado] = useState(null);
@@ -67,44 +68,45 @@ const AdminAbmPage = () => {
   };
 
   return (
-    <Container className='mt-20'>
-      <Row className="mt-3">
-        <Col>
-          <Button variant="primary" onClick={handleAgregarAdmin} className="mb-3">
-            Agregar Admin
-          </Button>
-        </Col>
-      </Row>
+    <Layout>
+      <Container>
+        <Row className="mt-3">
+          <Col>
+            <Button variant="primary" onClick={handleAgregarAdmin} className="mb-3">
+            <PersonAddIcon/>
+            </Button>
+          </Col>
+        </Row>
 
-      <Row>
-        {loading ? (
-          <LoadingSkeleton />
-        ) : (
-          <>
-            {admins.map((admin) => (
-              <Col key={admin.documento} md={4} className="mb-3">
-                <div className="card">
-                  <div className="card-body">
-                    <h5 className="card-title">{admin.nombre}</h5>
-                    <p className="card-text">{admin.documento}</p>
-                    <Button variant="outline-primary" onClick={() => handleEditarAdmin(admin.documento)}>
-                      Editar
-                    </Button>
-                    <Button variant="outline-danger" onClick={() => handleEliminarAdmin(admin.documento)} className="ml-2">
-                      Eliminar
-                    </Button>
+        <Row>
+          {loading ? (
+            <LoadingSkeleton />
+          ) : (
+            <>
+              {admins.map((admin) => (
+                <Col key={admin.documento} md={4} className="mb-3">
+                  <div className="card">
+                    <div className="card-body">
+                      <h5 className="card-title">{admin.nombre}</h5>
+                      <p className="card-text">{admin.documento}</p>
+                      <Button variant="outline-primary" onClick={() => handleEditarAdmin(admin.documento)}>
+                        Editar
+                      </Button>
+                      <Button variant="outline-danger" onClick={() => handleEliminarAdmin(admin.documento)} className="ml-2">
+                        Eliminar
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              </Col>
-            ))}
-          </>
+                </Col>
+              ))}
+            </>
+          )}
+        </Row>
+        {mostrarModal && (
+          <AdminForm onSave={handleGuardarAdmin} onDelete={handleEliminarAdmin} adminSeleccionado={adminSeleccionado} onClose={handleCerrarModal} />
         )}
-      </Row>
-  
-      {mostrarModal && (
-        <AdminForm onSave={handleGuardarAdmin} onDelete={handleEliminarAdmin} adminSeleccionado={adminSeleccionado} onClose={handleCerrarModal} />
-      )}
-    </Container>
+      </Container>
+    </Layout>
   );
 };
 

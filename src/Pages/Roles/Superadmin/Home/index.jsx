@@ -4,6 +4,7 @@ import SuperAdminNavbar from '../../../../Components/Navbar/SuperAdmin';
 import UserStatsCard from '../../../../Components/Users/StatsCard';
 import ClaimsStatsCard from '../../../../Components/Reclamo/ReclamosPorMes';
 import {CardsInfoGeneral} from '../../../../Components/Dashboad';
+import Layout from '../../../../Components/Layout';
 
 const claimsData = {
   Enero: 12,  Febrero: 20,  Marzo: 15,  Abril: 8,
@@ -16,7 +17,7 @@ const SuperAdminHome = () => {
   return (
     <>
       <SuperAdminNavbar />
-      <div className='mt-20'>
+      <Layout>
         <Container fluid className='mt-3 mt-md-4'>
           <Row className="my-2 align-items-stretch">
             <Col xs={12} md={6} className="mb-3">
@@ -40,7 +41,7 @@ const SuperAdminHome = () => {
           </Row>
           <CardsInfoGeneral/>
         </Container>
-      </div>
+      </Layout>
     </>
   );
 };

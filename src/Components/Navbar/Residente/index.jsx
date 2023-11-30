@@ -3,6 +3,7 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../../../assets/logo/Logo.svg'
 import LogoutIcon from '@mui/icons-material/Logout';
+import PersonIcon from '@mui/icons-material/Person';
 
 const ResidenteNavbar = () => {
     return (
@@ -17,7 +18,7 @@ const ResidenteNavbar = () => {
                 <NavLink to='/residente/unidades' className='nav-link custom-link'>Unidades</NavLink>
             </Nav>
             <Nav style={{ marginRight: '20px'}}>
-                <NavLink to='/perfil' className='nav-link custom-link'>Perfil</NavLink>
+                <NavLink to='/perfil' className='nav-link custom-link'><PersonIcon/></NavLink>
                 <NavLink to='/' className='nav-link custom-link'><LogoutIcon/></NavLink>
             </Nav>
         </Navbar.Collapse>

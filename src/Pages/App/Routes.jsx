@@ -42,11 +42,13 @@ const AppRoutes = () => {
       <Route path="/admin/empleados" element={<PrivateRoute><AdminEmpleados /></PrivateRoute>} />
       <Route path="/admin/reclamos" element={<PrivateRoute><AdminReclamos /></PrivateRoute>} />
       <Route path="/admin/edificios/abm" element={<PrivateRoute><AdminEdificios /></PrivateRoute>} />
-      <Route path="/admin/unidades" element={<PrivateRoute><AdminUnidades /></PrivateRoute>} />
+      <Route path="/admin/unidad/abm" element={<PrivateRoute><AdminUnidades /></PrivateRoute>} />
+      <Route path="/admin/unidades/transferencia-unidad" element={<PrivateRoute><AdminUnidades /></PrivateRoute>} />
 
       {/** Empleado*/}
       <Route path="/empleado/home" element={<PrivateRoute><EmpleadoHome /></PrivateRoute>} />
       <Route path="/empleado/edificios/abm" element={<PrivateRoute><EmpleadoEdificioAbm /></PrivateRoute>} />
+      <Route path="/empleado/unidad/abm" element={<PrivateRoute><EmpleadoEdificioAbm /></PrivateRoute>} />
 
       {/** Encargado*/}
       <Route path="/encargado/home" element={<PrivateRoute><EncargadoHome /></PrivateRoute>} />
@@ -56,8 +58,6 @@ const AppRoutes = () => {
       <Route path="/residente/home" element={<PrivateRoute><ResidenteHome /></PrivateRoute>} />
       <Route path="/residente/reclamos" element={<PrivateRoute><ResidenteReclamos /></PrivateRoute>} />
       <Route path="/residente/unidades" element={<PrivateRoute><ResidenteReclamos /></PrivateRoute>} />
-      
-  
     </Routes>
   );
 }

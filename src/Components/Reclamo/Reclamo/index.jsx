@@ -1,8 +1,8 @@
 // src/components/Reclamo/Reclamo.js
 import React from 'react';
 import ReclamoHeader from './ReclamoHeader';
-import ReclamoBody from './ReclamoBody';
-import ReclamoComentarios from './ReclamoComentarios';
+import ReclamoBody from './Body/ReclamoBody';
+import ReclamoComentarios from './Comentario/ReclamoComentarios';
 
 const Reclamo = ({ reclamo }) => {
     return (

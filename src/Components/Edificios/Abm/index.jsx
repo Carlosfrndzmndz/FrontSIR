@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import EdificioForm from '../Form';
-import EdificioCardSkeleton from './LoadingSkeleton';
+import LoadingSkeleton from '../../../Components/LoadingSkeleton';
 import { obtenerEdificios, agregarEdificio, eliminarEdificio, editarEdificio } from '../../../Context/Edificios';
+import DomainAddIcon from '@mui/icons-material/DomainAdd';
 
 const EdificiosPage = () => {
   const [edificios, setEdificios] = useState([]);
@@ -72,14 +73,14 @@ const EdificiosPage = () => {
       <Row className="mt-3">
         <Col>
           <Button variant="primary" onClick={handleAgregarEdificio} className="mb-3">
-            Agregar Edificio
+            <DomainAddIcon/>
           </Button>
         </Col>
       </Row>
 
       <Row>
         {loading ? (
-          <EdificioCardSkeleton />
+          <LoadingSkeleton />
         ) : (
           <>
             {edificios.map((edificio) => (
