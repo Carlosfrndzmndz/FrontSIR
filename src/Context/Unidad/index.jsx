@@ -50,10 +50,10 @@ const agregarUnidad = async (unidad) => {
         return;
     }
 
-    const response = await axios.post(rutaApi + 'agregar', unidad, {
+    const response = await axios.put(rutaApi + 'crearUnidad', unidad, {
         headers: {
             'Authorization': `Bearer ${token}`
-        },
+        }
     });
     if (response.status !== 200) {
         console.error('Error fetching data:', response.status);
@@ -70,7 +70,7 @@ const editarUnidad = async (unidad) => {
     const response = await axios.put(rutaApi + 'editar', unidad, {
         headers: {
             'Authorization': `Bearer ${token}`
-        },
+        }
     });
     if (response.status !== 200) {
         console.error('Error fetching data:', response.status);
@@ -84,10 +84,10 @@ const eliminarUnidad = async (identificador) => {
         return;
     }
 
-    const response = await axios.delete(rutaApi + 'eliminar?identificador=' + identificador, {
+    const response = await axios.delete(rutaApi + 'eliminarUnidad?identificador=' + identificador, {
         headers: {
             'Authorization': `Bearer ${token}`
-        },
+        }
     });
     if (response.status !== 200) {
         console.error('Error fetching data:', response.status);

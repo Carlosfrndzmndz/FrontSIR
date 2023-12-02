@@ -20,6 +20,7 @@ import AdminUnidades from '../Roles/Admin/Unidades';
 import EmpleadoEdificioAbm from '../Roles/Empleado/Edificio';
 import AdminAbm from '../Roles/Superadmin/Admin';
 import ResidenteReclamos from '../Roles/Residentes/Reclamos';
+import EmpleadoUnidades from '../Roles/Empleado/Unidades';
 
 const AppRoutes = () => {
   return (
@@ -48,7 +49,7 @@ const AppRoutes = () => {
       {/** Empleado*/}
       <Route path="/empleado/home" element={<PrivateRoute><EmpleadoHome /></PrivateRoute>} />
       <Route path="/empleado/edificios/abm" element={<PrivateRoute><EmpleadoEdificioAbm /></PrivateRoute>} />
-      <Route path="/empleado/unidad/abm" element={<PrivateRoute><EmpleadoEdificioAbm /></PrivateRoute>} />
+      <Route path="/empleado/unidad/abm" element={<PrivateRoute><EmpleadoUnidades/></PrivateRoute>} />
 
       {/** Encargado*/}
       <Route path="/encargado/home" element={<PrivateRoute><EncargadoHome /></PrivateRoute>} />

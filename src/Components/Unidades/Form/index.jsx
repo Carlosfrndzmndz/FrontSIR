@@ -3,17 +3,19 @@ import { Modal, Button, Form, FormGroup, FormControl, FormLabel } from 'react-bo
 
 const UnidadForm = ({ onSave, unidadSeleccionado, onClose, edificio }) => {
   const estadoInicial = {
+    edificio: unidadSeleccionado.edificio,
     piso: '',
-    numero: ''
+    numero: '',
+    identificador: null
   };
 
   const [unidad, setUnidad] = useState(unidadSeleccionado || estadoInicial);
 
   useEffect(() => {
     if (unidadSeleccionado) {
-      setUnidad({ ...unidadSeleccionado, edificio });
+      setUnidad({ unidadSeleccionado});
     } else {
-      setUnidad({ ...estadoInicial, edificio });
+      setUnidad({ estadoInicial });
     }
   }, [unidadSeleccionado, edificio]);
 
@@ -30,13 +32,13 @@ const UnidadForm = ({ onSave, unidadSeleccionado, onClose, edificio }) => {
   return (
     <Modal show={true} onHide={onClose}>
       <Modal.Header closeButton>
-        <Modal.Title>{unidadSeleccionado ? 'Editar Unidad' : 'Agregar Nueva Unidad'}</Modal.Title>
+        <Modal.Title>{unidadSeleccionado.identificador != null ? 'Editar Unidad' : 'Agregar Nueva Unidad'}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
           <FormGroup>
             <FormLabel>Edificio</FormLabel>
-            <FormControl type="text" readOnly value={edificio ? edificio.nombre : ''} />
+            <FormControl type="text" disabled readOnly value={edificio ? edificio.nombre : unidadSeleccionado.edificio.nombre} />
           </FormGroup>
           <Form.Group controlId="formPiso">
             <Form.Label>Piso</Form.Label>
@@ -53,7 +55,7 @@ const UnidadForm = ({ onSave, unidadSeleccionado, onClose, edificio }) => {
           Cerrar
         </Button>
         <Button variant="primary" onClick={handleGuardar}>
-          {unidadSeleccionado ? 'Actualizar' : 'Guardar'}
+          {unidadSeleccionado.identificador != null ? 'Actualizar' : 'Guardar'}
         </Button>
       </Modal.Footer>
     </Modal>

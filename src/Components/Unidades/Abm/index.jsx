@@ -10,7 +10,7 @@ const UnidadesPage = () => {
   const [unidades, setUnidades] = useState([]);
   const [edificios, setEdificios] = useState([]);
   const [edificioSeleccionado, setEdificioSeleccionado] = useState('');
-  const [unidadSeleccionado, setUnidadSeleccionado] = useState(null);
+  const [unidadSeleccionado, setUnidadSeleccionado] = useState({edificio: null, piso: '', numero: '', identificador: null});
   const [mostrarModal, setMostrarModal] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -20,7 +20,7 @@ const UnidadesPage = () => {
         const edificiosData = await obtenerEdificios();
         setEdificios(edificiosData);
         if (edificiosData.length > 0) {
-          setEdificioSeleccionado(edificiosData[0].codigo);
+          setEdificioSeleccionado(edificiosData[0]);
           fetchUnidades(edificiosData[0].codigo);
         }
       } catch (error) {
@@ -51,11 +51,19 @@ const UnidadesPage = () => {
   const handleGuardarUnidad = async (nuevaUnidad) => {
     try {
       if (nuevaUnidad.identificador) {
+        console.log('nuevaUnidad',nuevaUnidad);
         await editarUnidad(nuevaUnidad);
       } else {
-        await agregarUnidad(nuevaUnidad);
+        console.log('nuevaUnidad',nuevaUnidad);
+        const unidad = {
+          codigo: nuevaUnidad.unidadSeleccionado.edificio.codigo,
+          piso: nuevaUnidad.piso,
+          numero: nuevaUnidad.numero
+        }
+        console.log('unidad',unidad);
+        await agregarUnidad(unidad);
       }
-      fetchUnidades(edificioSeleccionado);
+      fetchUnidades(edificioSeleccionado.codigo);
       setMostrarModal(false);
     } catch (error) {
       console.error('Error saving unidad:', error);
@@ -65,22 +73,26 @@ const UnidadesPage = () => {
   const handleEliminarUnidad = async (codigo) => {
     try {
       await eliminarUnidad(codigo);
-      fetchUnidades(edificioSeleccionado);
+      fetchUnidades(edificioSeleccionado.codigo);
     } catch (error) {
       console.error('Error deleting unidad:', error);
     }
   };
 
   const handleAgregarUnidad = () => {
-    const edificioActual = edificios.find(e => e.codigo === edificioSeleccionado);
-    setUnidadSeleccionado({ edificio: edificioActual, piso: '', numero: '' });
+    setUnidadSeleccionado({ edificio: {codigo: edificioSeleccionado.codigo, nombre: edificioSeleccionado.nombre}, piso: '', numero: '' , identificador: null});
+    console.log('unidadSeleccionado ABM', unidadSeleccionado);
     setMostrarModal(true);
   };
 
   const handleEditarUnidad = (identificador) => {
-    const unidadEditar = unidades.find((unidad) => unidad.identificador === identificador);
-    const edificioActual = edificios.find(e => e.codigo === edificioSeleccionado);
-    setUnidadSeleccionado({ ...unidadEditar, edificio: edificioActual });
+    console.log('identificador',identificador);
+    console.log('unidades:',unidades);
+
+    const unidadEditar = unidades.find((unidad) => unidad.id === identificador);
+    console.log('unidad Editar ABM', unidadEditar);
+    console.log(edificioSeleccionado);
+    setUnidadSeleccionado({ edificio: edificioSeleccionado, piso: unidadEditar.piso, numero: unidadEditar.numero, identificador: unidadEditar.id});
     setMostrarModal(true);
   };
 
@@ -95,7 +107,7 @@ const UnidadesPage = () => {
         <Col>
           <Form.Group controlId="formEdificioSelect">
             <Form.Label>Selecciona un Edificio</Form.Label>
-            <Form.Control as="select" value={edificioSeleccionado} onChange={handleEdificioChange} className="mb-3">
+            <Form.Control as="select" value={edificioSeleccionado.codigo} onChange={handleEdificioChange} className="mb-3">
               {edificios.map((edificio) => (
                 <option key={edificio.codigo} value={edificio.codigo}>
                   {edificio.nombre}

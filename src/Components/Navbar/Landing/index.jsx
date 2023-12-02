@@ -14,13 +14,11 @@ const LandingNavbar = () => {
                 <NavLink to='/' className="navbar-brand" style={{ marginLeft: '20px' }}>
                     <img src={logo} alt="Logo" className="logo-img" style={{ maxHeight: '40px' }} />
                 </NavLink>
-
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
                 <NavLink to='/superadmin/home' className="navbar-brand">
                     Super Admin
                 </NavLink>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-
                 <NavLink to='/admin/home' className="navbar-brand">
                     Admin
                 </NavLink>

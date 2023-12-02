@@ -4,12 +4,15 @@ import EdificioForm from '../Form';
 import LoadingSkeleton from '../../../Components/LoadingSkeleton';
 import { obtenerEdificios, agregarEdificio, eliminarEdificio, editarEdificio } from '../../../Context/Edificios';
 import DomainAddIcon from '@mui/icons-material/DomainAdd';
+import { Modal, Spinner } from 'react-bootstrap';
+
 
 const EdificiosPage = () => {
   const [edificios, setEdificios] = useState([]);
   const [edificioSeleccionado, setEdificioSeleccionado] = useState(null);
   const [mostrarModal, setMostrarModal] = useState(false);
   const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
     const fetchEdificios = async () => {
@@ -58,15 +61,30 @@ const EdificiosPage = () => {
     setMostrarModal(true);
   };
 
-  const handleAgregarEdificio = () => {
+  /* const handleAgregarEdificio = () => {
     setEdificioSeleccionado(null);
     setMostrarModal(true);
+    
+
+    
+  }; */
+
+  const handleAgregarEdificio = () => {
+    setEdificioSeleccionado(null);
+    setShowCrearModal(true);
+    setCreandoEdificio(true); // Cambiar el estado a "true" para indicar que se está creando un edificio
   };
+  
 
   const handleCerrarModal = () => {
     setEdificioSeleccionado(null);
     setMostrarModal(false);
   };
+
+  const [showCrearModal, setShowCrearModal] = useState(false);
+  const [creandoEdificio, setCreandoEdificio] = useState(false);
+
+  
 
   return (
     <Container className='mt-20'>
@@ -95,6 +113,7 @@ const EdificiosPage = () => {
                     <Button variant="outline-danger" onClick={() => handleEliminarEdificio(edificio.codigo)} className="ml-2">
                       Eliminar
                     </Button>
+                    
                   </div>
                 </div>
               </Col>
@@ -106,6 +125,25 @@ const EdificiosPage = () => {
       {mostrarModal && (
         <EdificioForm onSave={handleGuardarEdificio} onDelete={handleEliminarEdificio} edificioSeleccionado={edificioSeleccionado} onClose={handleCerrarModal} />
       )}
+      <Modal show={showCrearModal} onHide={handleCerrarModal}>
+  <Modal.Header closeButton>
+    <Modal.Title>Creando Edificio</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    {creandoEdificio ? (
+      <div className="text-center">
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Cargando...</span>
+        </Spinner>
+        <p>Creando edificio...</p>
+      </div>
+    ) : (
+      // Aquí coloca tu formulario de creación de edificio
+      <EdificioForm onSave={handleGuardarEdificio} onDelete={handleEliminarEdificio} edificioSeleccionado={edificioSeleccionado} onClose={handleCerrarModal} />
+    )}
+  </Modal.Body>
+</Modal>
+
     </Container>
   );
 };

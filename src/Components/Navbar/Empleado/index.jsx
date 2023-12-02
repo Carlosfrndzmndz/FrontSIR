@@ -24,8 +24,18 @@ const EmpleadoNavbar = () => {
                         Reclamos
                     </NavLink>
                     <NavDropdown title="Edificios" id="basic-nav-dropdown">
-                        <NavDropdown.Item><NavLink to='/empleado/edificios/abm' className="nav-link">ABM</NavLink></NavDropdown.Item>
-                        <NavDropdown.Item><NavLink to='/admin/edificios/dashboard' className="nav-link">Dashboard</NavLink></NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <NavLink to='/empleado/edificios/abm' className="nav-link">Listado de edificios</NavLink>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <NavLink to='/empleado/edificios/habilitados' className="nav-link">Habilitados por edificio</NavLink>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <NavLink to='/empleado/edificios/duenos' className="nav-link">Dueños por edificio</NavLink>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <NavLink to='/empleado/edificios/habitantes' className="nav-link">Habitantes por edificio</NavLink>
+                        </NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Gestionar Unidad" id="basic-nav-dropdown">
                         <NavDropdown.Item>
