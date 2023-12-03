@@ -1,4 +1,4 @@
-import AdminAbmPage from "../../../../Components/Admin/Abm";
+import AdminAbmPage from "../../../../Components/Persona/Admin/Abm";
 import SuperAdminNavbar from "../../../../Components/Navbar/SuperAdmin";
 
 function AdminAbm(){

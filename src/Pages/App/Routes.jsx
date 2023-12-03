@@ -13,7 +13,7 @@ import EmpleadoHome from '../Roles/Empleado/Home';
 import EncargadoHome from '../Roles/Encargado/Home';
 import ResidenteHome from '../Roles/Residentes/Home';
 import AdminEdificios from '../Roles/Admin/Edificio';
-import AdminEmpleados from '../Roles/Admin/Empleados';
+import AdminUsuario from '../Roles/Admin/Usuario';
 import AdminReclamos from '../Roles/Admin/Reclamos';
 import AdminResidentes from '../Roles/Admin/Residentes';
 import AdminUnidades from '../Roles/Admin/Unidades';
@@ -40,11 +40,13 @@ const AppRoutes = () => {
       {/** Admin*/}
       <Route path="/admin/home" element={<PrivateRoute><AdminHome /></PrivateRoute>} />
       <Route path="/admin/residentes" element={<PrivateRoute><AdminResidentes /></PrivateRoute>} />
-      <Route path="/admin/empleados" element={<PrivateRoute><AdminEmpleados /></PrivateRoute>} />
+      <Route path="/admin/usuario" element={<PrivateRoute><AdminUsuario /></PrivateRoute>} />
       <Route path="/admin/reclamos" element={<PrivateRoute><AdminReclamos /></PrivateRoute>} />
       <Route path="/admin/edificios/abm" element={<PrivateRoute><AdminEdificios /></PrivateRoute>} />
       <Route path="/admin/unidad/abm" element={<PrivateRoute><AdminUnidades /></PrivateRoute>} />
       <Route path="/admin/unidades/transferencia-unidad" element={<PrivateRoute><AdminUnidades /></PrivateRoute>} />
+      
+      
 
       {/** Empleado*/}
       <Route path="/empleado/home" element={<PrivateRoute><EmpleadoHome /></PrivateRoute>} />

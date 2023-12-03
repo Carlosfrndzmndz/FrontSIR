@@ -1,39 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import AdminForm from '../Form';
-import LoadingSkeleton from '../../../Components/LoadingSkeleton';
-import { obtenerAdmins, agregarAdmin, eliminarAdmin, editarAdmin } from '../../../Context/Admins';
+import LoadingSkeleton from '../../../LoadingSkeleton';
+import { obtenerPersonasPorRol, agregarPersona, eliminarPersona, editarPersona } from '../../../Context/Persona';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import Layout from '../../Layout';
-const AdminAbmPage = () => {
+const EncargadoAbmPage = () => {
   const [admins, setAdmins] = useState([]);
   const [adminSeleccionado, setAdminSeleccionado] = useState(null);
   const [mostrarModal, setMostrarModal] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  
+
   useEffect(() => {
-    const fetchAdmin = async () => {
+    const fetchUsuario = async () => {
       try {
-        const data = await obtenerAdmins();
-        setAdmins(data);
-        setLoading(false);
+        const data = await obtenerPersonasPorRol('Empleado');
+        setUsuario(data);
+        setUsuario(false);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
-    fetchAdmin();
+    fetchUsuario();
   }, []);
 
-  const handleGuardarAdmin = async (admin) => {
+  const handleGuardarEncargado = async (encargado) => {
     try {
+      console.log('admin', admin);
+      console.log('adminSeleccionado', adminSeleccionado);
       if (adminSeleccionado) {
-        await editarAdmin(admin); // Editar admin existente
+        
+        await editarPersona(admin); // Editar admin existente
+        
       } else {
-        await agregarAdmin(admin); // Agregar nuevo admin
+        await agregarPersona(admin); // Agregar nuevo admin
       }
 
-      const data = await obtenerAdmins();
+      const data = await obtenerPersonasPorRol('Admin');
       setAdmins(data);
       setMostrarModal(false);
     } catch (error) {
@@ -43,9 +49,9 @@ const AdminAbmPage = () => {
 
   const handleEliminarAdmin = async (documento) => {
     try {
-      await eliminarAdmin(documento);
-      const data = await obtenerAdmins();
-      setAdmins(data);
+      await eliminarPersona(documento);
+      const data = await obtenerPersonasPorRol('Admin');
+      setAdmin(data);
     } catch (error) {
       console.error('Error deleting admin:', error);
     }

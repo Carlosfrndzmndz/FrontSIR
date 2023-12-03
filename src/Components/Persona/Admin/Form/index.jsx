@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
+
+
 const AdminForm = ({ onSave, adminSeleccionado, onClose }) => {
   const [admin, setAdmin] = useState({ nombre: '', tipoDocumento: '', numeroDocumento: '', rol: 'Admin' });
+  
 
   useEffect(() => {
     if (adminSeleccionado) {
@@ -20,10 +23,15 @@ const AdminForm = ({ onSave, adminSeleccionado, onClose }) => {
   };
 
   const handleGuardar = () => {
+    
+
     const adminAGuardar = {
-      ...admin,
       documento: `${admin.tipoDocumento}${admin.numeroDocumento}`,
+      nombre: admin.nombre,
+      rol: 'Admin',
     };
+
+
     onSave(adminAGuardar);
     onClose();
   };

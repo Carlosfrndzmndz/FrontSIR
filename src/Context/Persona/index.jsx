@@ -1,16 +1,26 @@
 import axios from "axios";
 
-const apiUrl = "https://api.sir.net.ar/";
+const apiUrl = "https://api.sir.net.ar/persona/";
 
 const getToken = () => {
     const token = localStorage.getItem('token');
     return token;
 }
 
+const agregarPersona = async (nuevaPersona) => {
+    const response = await axios.post(apiUrl + 'agregar', nuevaPersona, {
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    });
+
+    return response.data;
+}
+
 const getRol = async (mail) => {
     try {
         const response = await axios.get(
-            `${apiUrl}persona/getRol?mail=${mail}`,
+            `${apiUrl}getRol?mail=${mail}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -31,4 +41,52 @@ const getRol = async (mail) => {
     }
 }
 
-export{getRol}
+const obtenerPersonasPorRol = async (rol) => {
+    const token = getToken();
+    if (!token) {
+        console.error('Token is missing.');
+        return;
+    }
+
+    const response = await axios.get(apiUrl + `getPorRol?rol=${rol}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+    });
+    if (response.status === 200) {
+        return response.data;
+    } else {
+        console.error('Error fetching data:', response.status);
+    }
+}
+
+const eliminarPersona = async (documento) => {
+const response = await axios.delete(url + '/eliminar', {
+    headers: {
+        Authorization: `Bearer ${getToken()}`
+    },
+    data: {
+        documento: documento
+    }
+});
+
+return response.data;
+}
+
+const editarPersona = async (nuevaPersona) => {
+    
+    const response = await axios.patch(apiUrl + 'modificar',{
+        documento: nuevaPersona.documento,
+        nombre: nuevaPersona.nombre,
+        rol: nuevaPersona.rol
+    }, {
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+
+    });
+
+    return response.data;
+}
+
+export{getRol , agregarPersona , obtenerPersonasPorRol , eliminarPersona , editarPersona}
