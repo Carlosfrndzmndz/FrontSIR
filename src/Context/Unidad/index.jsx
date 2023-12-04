@@ -37,9 +37,10 @@ const obtenerTodasLasUnidades = async () => {
         },
     });
     if (response.status === 200) {
-        return response.data;
+        return response;
     } else {
         console.error('Error fetching data:', response.status);
+        return response;
     }
 }
 
@@ -58,6 +59,9 @@ const agregarUnidad = async (unidad) => {
     if (response.status !== 200) {
         console.error('Error fetching data:', response.status);
     }
+    else{
+        return response;
+    }
 }
 
 const editarUnidad = async (unidad) => {
@@ -74,6 +78,9 @@ const editarUnidad = async (unidad) => {
     });
     if (response.status !== 200) {
         console.error('Error fetching data:', response.status);
+    }
+    else{
+        return response;
     }
 }
 
@@ -92,6 +99,215 @@ const eliminarUnidad = async (identificador) => {
     if (response.status !== 200) {
         console.error('Error fetching data:', response.status);
     }
+    else{
+        return response;
+    }
 }
 
-export { obtenerTodasLasUnidades, agregarUnidad, editarUnidad, eliminarUnidad, obtenerUnidades };
+const transferirUnidad = async (identificador, documento) => {
+    const token = getToken();
+    if (!token) {
+        console.error('Token is missing.');
+        return;
+    }
+
+    const response = await axios.post(rutaApi + 'transferirUnidad', {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+        data: {
+            identificador: identificador,
+            documento: documento
+        }
+    });
+    if (response.status !== 200) {
+        console.error('Error fetching data:', response.status);
+    }
+    else{
+        return response;
+    }
+}
+
+const alquilarUnidad = async (documento, codigo, piso, numero) => {
+    const token = getToken();
+    if (!token) {
+        console.error('Token is missing.');
+        return;
+    }
+
+    const response = await axios.post(rutaApi + 'alquilarUnidad', {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+        data: {
+            codigo: codigo,
+            piso: piso,
+            numero: numero,
+            documento: documento
+        }
+    });
+    if (response.status !== 200) {
+        console.error('Error fetching data:', response.status);
+        return response;
+    }
+    else{
+        return response;
+    }
+}
+
+const liberarUnidad = async (identificador) => {
+    const token = getToken();
+    if (!token) {
+        console.error('Token is missing.');
+        return;
+    }
+
+    const response = await axios.post(rutaApi + 'liberarUnidad?identificador='+identificador, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+    if (response.status !== 200) {
+        console.error('Error fetching data:', response.status);
+        return response;
+    }
+    else{
+        return response;
+    }
+}
+
+const habitarUnidad = async (identificador) => {
+    const token = getToken();
+    if (!token) {
+        console.error('Token is missing.');
+        return;
+    }
+    const response = await axios.post(rutaApi + 'habitarUnidad?identificador='+identificador, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+    if (response.status !== 200) {
+        console.error('Error fetching data:', response.status);
+        return response;
+    }
+    else{
+        return response;
+    }
+}
+
+const agregarDuenioUnidad = async (codigo, documento, piso, numero) => {
+    const token = getToken();
+    if (!token) {
+        console.error('Token is missing.');
+        return;
+    }
+    const response = await axios.post(rutaApi + 'agregarDuenioUnidad', {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+        data: {
+            codigo: codigo,
+            piso: piso,
+            numero: numero,
+            documento: documento
+        }
+    });
+    if (response.status !== 200) {
+        console.error('Error fetching data:', response.status);
+        return response;
+    }
+    else{
+        return response;
+    }
+}
+
+const agregarInquilinoUnidad = async (codigo, documento, piso, numero) => {
+    const token = getToken();
+    if (!token) {
+        console.error('Token is missing.');
+        return;
+    }
+    const response = await axios.post(rutaApi + 'agregarInquilinoUnidad', {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+        data: {
+            codigo: codigo,
+            piso: piso,
+            numero: numero,
+            documento: documento
+        }
+    });
+    if (response.status !== 200) {
+        console.error('Error fetching data:', response.status);
+        return response;
+    }
+    else{
+        return response;
+    }
+}
+
+const dueniosPorUnidad = async (identificador) => {
+    const token = getToken();
+    if (!token) {
+        console.error('Token is missing.');
+        return;
+    }
+    const response = await axios.get(rutaApi + 'getDuenios?identificador='+identificador, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+    if (response.status !== 200) {
+        console.error('Error fetching data:', response.status);
+        return response;
+    }
+    else{
+        return response;
+    }
+}
+
+const inquilinosPorUnidad = async (identificador) => {
+    const token = getToken();
+    if (!token) {
+        console.error('Token is missing.');
+        return;
+    }
+    const response = await axios.get(rutaApi + 'getInquilinos?identificador='+identificador, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+    if (response.status !== 200) {
+        console.error('Error fetching data:', response.status);
+        return response;
+    }
+    else{
+        return response;
+    }
+}
+
+const obtenerTodas = async () => {
+    const token = getToken();
+    if (!token) {
+        console.error('Token is missing.');
+        return;
+    }
+
+    const response = await axios.get(rutaApi + 'obtenerTodas', {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+    });
+    if (response.status === 200) {
+        return response;
+    } else {
+        console.error('Error fetching data:', response.status);
+        return response;
+    }
+}
+
+export { obtenerTodasLasUnidades, agregarUnidad, editarUnidad, eliminarUnidad, obtenerUnidades,
+    transferirUnidad, alquilarUnidad , liberarUnidad, habitarUnidad, agregarDuenioUnidad,
+    agregarInquilinoUnidad, dueniosPorUnidad, inquilinosPorUnidad, obtenerTodas};

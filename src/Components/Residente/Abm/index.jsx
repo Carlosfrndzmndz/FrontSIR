@@ -51,7 +51,7 @@ const ReclamoAbmPage = () => {
   };
 
   const handleEditarReclamo = (documento) => {
-    const reclamoEditar = reclamo.find((reclamo) => admin.documento === documento);
+    const reclamoEditar = reclamo.find((reclamo) => admin.documento == documento);
     setReclamoSeleccionado(reclamoEditar);
     setMostrarModal(true);
   };

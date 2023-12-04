@@ -7,6 +7,7 @@ import { obtenerPersonasPorRol, agregarPersona, eliminarPersona, editarPersona }
 import Layout from '../../../Layout';
 import { useTable, useGlobalFilter, useSortBy } from 'react-table';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+
 function GlobalFilter({ globalFilter, setGlobalFilter }) {
   return (
     <Form className="d-flex align-items-center mb-3">
@@ -76,7 +77,7 @@ const ResidentesAbmPage = () => {
   };
 
   const handleEditarResidente = (documento) => {
-    const residenteEditar = residentes.find((residente) => residente.documento == documento);
+    const residenteEditar = residentes.find((residente) => residente.documento.trim() == documento.trim());
     if (residenteEditar) {
       setResidentSeleccionado(residenteEditar);
       setMostrarModal(true);

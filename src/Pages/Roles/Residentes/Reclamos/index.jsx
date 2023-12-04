@@ -1,7 +1,7 @@
 import {React, useState, useEffect } from "react";
 import Reclamo from "../../../../Components/Reclamo/Reclamo";
 import ResidenteNavbar from "../../../../Components/Navbar/Residente";
-import { obtenerReclamos } from "../../../../Context/Reclamo";
+import { obtenerReclamosPorDocumento } from "../../../../Context/Reclamo";
 import ReclamoSkeleton from "../../../../Components/Reclamo/Reclamo/Skeleton";
 
 const ReclamosLista = () => {
@@ -11,7 +11,7 @@ const ReclamosLista = () => {
 
     useEffect(() => {
         const fetchReclamos = async () => {
-            const reclamos = await obtenerReclamos(documento);
+            const reclamos = await obtenerReclamosPorDocumento(documento);
             setReclamos(reclamos);
         };
         fetchReclamos();

@@ -44,7 +44,7 @@ const AppRoutes = () => {
       <Route path="/recupero-password/nuevacontrasena" element={<NuevaContraseña />} />
       <Route path="*" element={<NotFound />} />
 
-      {/** SuperAdmin*/} 
+      {/** SuperAdmin*/}
       <Route path="/superadmin/home" element={<PrivateRoute><SuperAdminHome /></PrivateRoute>} />
       <Route path="/superadmin/admin/abm" element={<PrivateRoute><AdminAbm/></PrivateRoute>} />
       <Route path="/superadmin/admin" element={<PrivateRoute><SuperAdminHome/></PrivateRoute>} />

@@ -64,4 +64,57 @@ const unidadesPorEdificio = async (codigo) => {
     return response.data;
 }
 
-export {obtenerEdificios, agregarEdificio, eliminarEdificio, editarEdificio, unidadesPorEdificio};
+const buscarPorcodigo = async (codigo) => {
+
+    const response = await axios.get(rutaApi + '/buscar?codigo=' + codigo, {
+        headers: {
+        'Authorization': `Bearer ${getToken()}`
+        }
+    });
+
+    return response;
+}
+
+const habilitadosPorEdificio = async (codigo) => {
+
+    const response = await axios.get(rutaApi + '/habilitados?codigo=' + codigo, {
+        headers: {
+            'Authorization': `Bearer ${getToken()}`
+        }
+    });
+
+    return response;
+}
+
+const obtenerInquilinos = async (codigo) => {
+
+    const response = await axios.get(rutaApi + '/inquilinos?codigo=' + codigo, {
+        headers: {
+            'Authorization': `Bearer ${getToken()}`
+        }
+    });
+    return response;
+}
+
+const obtenerDuenios = async (codigo) => {
+
+    const response = await axios.get(rutaApi + '/duenios?codigo=' + codigo, {
+        headers: {
+            'Authorization': `Bearer ${getToken()}`
+        }
+    });
+    return response;
+}
+
+const habitantes = async (codigo) => {
+
+    const response = await axios.get(rutaApi + '/habitantes?codigo=' + codigo, {
+        headers: {
+            'Authorization': `Bearer ${getToken()}`
+        }
+    });
+    return response;
+}
+
+export {obtenerEdificios, agregarEdificio, eliminarEdificio, editarEdificio, unidadesPorEdificio,
+    buscarPorcodigo,habilitadosPorEdificio, obtenerInquilinos, obtenerDuenios, habitantes}
