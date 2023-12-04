@@ -99,4 +99,14 @@ const getReporteUsuarios = async () => {
     return response.data;
 }
 
-export{getRol , agregarPersona , obtenerPersonasPorRol , eliminarPersona , editarPersona , getReporteUsuarios}
+const getPorDocumento = async (documento) => {
+    const response = await axios.get(apiUrl + `buscar?documento=${documento}`, {
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    });
+
+    return response.data;
+}
+
+export{getRol , agregarPersona , obtenerPersonasPorRol , eliminarPersona , editarPersona , getReporteUsuarios , getPorDocumento}

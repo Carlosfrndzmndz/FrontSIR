@@ -50,27 +50,31 @@ const registrarPassword = async (documento, password) => {
 const olvidePassword = async (mail) => {
     const response = await axios.post(`${apiUrl}olvidePassword?mail=${mail}`);
     if (response.status === 200) {
-        return response.data;
+        return response;
     } else {
         console.error('Error fetching data:', response.status);
+        return response;
     }
+
 }
 
 const cambiarPassword = async (mail,token,password) => {
     const response = await axios.patch(`${apiUrl}cambiarPassword?token=${token}&mail=${mail}&password=${password}`);
     if (response.status === 200) {
-        return response.data;
+        return response;
     } else {
         console.error('Error fetching data:', response.status);
+        return response;
     }
 }
 
 const reenviarTokenPassword = async (mail) => {
     const response = await axios.get(`${apiUrl}reenviarTokenPassword?mail=${mail}`);
     if (response.status === 200) {
-        return response.data;
+        return response;
     } else {
         console.error('Error fetching data:', response.status);
+        return response;
     }
 }
 

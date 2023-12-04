@@ -27,6 +27,8 @@ import EmpleadoResidentesAbm from '../Roles/Empleado/Residente';
 import EmpleadoAbm from '../Roles/Admin/Usuario/Empleado';
 import VerificarCodigo from '../Register/confirmarToken';
 import RegistrarPassword from '../Register/RegistrarPassword';
+import IngresoCorreo from '../RecuperoContraseña';
+import NuevaContraseña from '../CambiarContraseña';
 
 const AppRoutes = () => {
   return (
@@ -38,6 +40,8 @@ const AppRoutes = () => {
       <Route path="/register/verificar" element={<VerificarCodigo />} />
       <Route path="/register/password" element={<RegistrarPassword />} />
       <Route path="/perfil" element={<PrivateRoute><Perfil /></PrivateRoute>} />
+      <Route path="/recupero-password" element={<IngresoCorreo />} />
+      <Route path="/recupero-password/nuevacontrasena" element={<NuevaContraseña />} />
       <Route path="*" element={<NotFound />} />
 
       {/** SuperAdmin*/} 
