@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Login from '../Login';
 import NotFound from '../NotFound';
 import Perfil from '../Perfil';
-import Register from '../Register';
+import RegistroPage from '../Register/nuevo';
 import AdminEdificios from '../Roles/Admin/Edificio';
 import AdminHome from '../Roles/Admin/Home';
 import AdminReclamos from '../Roles/Admin/Reclamos';
@@ -25,6 +25,8 @@ import EncargadoABM from '../Roles/Admin/Usuario/Encargado';
 import AdminResidentesAbm from '../Roles/Admin/Usuario/Residente';
 import EmpleadoResidentesAbm from '../Roles/Empleado/Residente';
 import EmpleadoAbm from '../Roles/Admin/Usuario/Empleado';
+import VerificarCodigo from '../Register/confirmarToken';
+import RegistrarPassword from '../Register/RegistrarPassword';
 
 const AppRoutes = () => {
   return (
@@ -32,7 +34,9 @@ const AppRoutes = () => {
       {/** General*/}
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Route path="/register" element={<RegistroPage />} />
+      <Route path="/register/verificar" element={<VerificarCodigo />} />
+      <Route path="/register/password" element={<RegistrarPassword />} />
       <Route path="/perfil" element={<PrivateRoute><Perfil /></PrivateRoute>} />
       <Route path="*" element={<NotFound />} />
 

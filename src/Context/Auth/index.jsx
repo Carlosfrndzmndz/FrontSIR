@@ -2,21 +2,26 @@ import axios from "axios";
 
 const apiUrl = "https://api.sir.net.ar/auth/";
 
-const validarMail = async (mail,documento) => {
-    // Llamada API para el paso de verificacion de mail se pasa el mail y el documento como parametros
+    const validarMail = async (mail,documento) => {
+        // Llamada API para el paso de verificacion de mail se pasa el mail y el documento como parametros
 
-    const response = await axios.post(`${apiUrl}validarMail?documento=${documento}&mail=${mail}`);
-    if (response.status === 200) {
-        return response.data;
-    } else {
-        console.error('Error fetching data:', response.status);
+        const response = await axios.post(`${apiUrl}validarMail?documento=${documento}&mail=${mail}`);
+        console.log(response);
+        if (response.status === 200) {
+            return response;
+        }
+        if (response.status == 400) {
+            return response;
+        }
+        else {
+            return response;
+        }
     }
-}
 
 const ReenviarMail = async (mail) => {
     const response = await axios.get(`${apiUrl}reenviarTokenMail?mail=${mail}`);
     if (response.status === 200) {
-        return response.data;
+        return response;
     } else {
         console.error('Error fetching data:', response.status);
     }
@@ -24,20 +29,21 @@ const ReenviarMail = async (mail) => {
 
 const verificarMail = async (mail,token) => {
     // Llamada API para el paso de verificacion de mail se pasa el mail y el token como parametros
-    const response = await axios.post(`${apiUrl}verificarMail?token=${token}&mail=${mail}`);
+    const response = await axios.post(`${apiUrl}confirmarMail?token=${token}&mail=${mail}`);
     if (response.status === 200) {
-        return response.data;
+        return response;
     } else {
-        console.error('Error fetching data:', response.status);
+        console.error('Error fetching data:', response);
     }
 }
 
 const registrarPassword = async (documento, password) => {
     const response = await axios.patch(`${apiUrl}registrarPassword`,{documento:documento,password:password});
     if (response.status === 200) {
-        return response.data;
+        return response;
     } else {
-        console.error('Error fetching data:', response.status);
+        console.error('Error fetching data:', response);
+        return response;
     }
 }
 

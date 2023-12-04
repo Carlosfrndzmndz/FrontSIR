@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { login } from '../../Context/Auth/Login';
+/* import React, { useState } from 'react';
+import { login } from '../../Context/Auth';
 import { getRol } from '../../Context/Persona';
 import Layout from "../../Components/Layout";
 
@@ -141,5 +141,126 @@ const LoginForm = () => {
     </Layout>
   );
 };
+
+export default LoginForm;
+ */
+
+import React, { useState } from 'react';
+import { Container, Form, Button, Modal, Spinner, Card } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom'; // Importa useHistory para redirigir
+
+function LoginForm() {
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [mostrarModalCarga, setMostrarModalCarga] = useState(false);
+  const history = useHistory(); // Inicializa el history para redirigir
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
+  const handleShowPasswordToggle = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleForgotPassword = () => {
+    // Redirige a la ruta '/login/recupero-contraseña' cuando se hace clic en "¿Olvidaste tu contraseña?"
+    history.push('/login/recupero-contraseña');
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (password.length >= 8 && /\d{2}/.test(password) && password === confirmPassword) {
+      try {
+        setMostrarModalCarga(true);
+        // Tu lógica para registrar la contraseña aquí
+        console.log('Contraseña registrada con éxito');
+        // Redirige a la página de inicio de sesión después de registrar la contraseña
+        window.location.href = '/login';
+      } catch (error) {
+        console.error('Error en la llamada a la API:', error);
+      } finally {
+        setMostrarModalCarga(false);
+      }
+    } else {
+      setShowModal(true);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  return (
+    <Container className="mt-4 d-flex justify-content-center align-items-center">
+      <Card style={{ width: '400px' }}>
+        <Card.Body>
+          <h2 className="text-center mb-4">Registrar Contraseña</h2>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group>
+              <Form.Label>Contraseña</Form.Label>
+              <Form.Control
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={handlePasswordChange}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label className="mt-3">Confirmar Contraseña</Form.Label>
+              <Form.Control
+                type={showPassword ? 'text' : 'password'}
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
+              />
+            </Form.Group>
+            <Form.Check
+              className="mt-3"
+              type="checkbox"
+              label="Mostrar Contraseña"
+              onChange={handleShowPasswordToggle}
+            />
+            <Button variant="primary" type="submit" className="mt-3">
+              Registrar Contraseña
+            </Button>
+          </Form>
+          {/* Agrega un botón para redirigir a la ruta de recuperación de contraseña */}
+          <Button variant="link" onClick={handleForgotPassword} className="mt-3">
+            ¿Olvidaste tu contraseña?
+          </Button>
+        </Card.Body>
+      </Card>
+      <Modal show={mostrarModalCarga} centered>
+        <Modal.Body>
+          <div className="text-center">
+            <Spinner animation="border" role="status">
+              <span className="sr-only">Cargando...</span>
+            </Spinner>
+            <p>Procesando...</p>
+          </div>
+        </Modal.Body>
+      </Modal>
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Error</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Por favor, asegúrese de que la contraseña tenga al menos 8 caracteres, incluyendo al menos 2 números, y que las contraseñas coincidan.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </Container>
+  );
+}
 
 export default LoginForm;
