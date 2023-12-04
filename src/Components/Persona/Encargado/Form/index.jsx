@@ -3,43 +3,43 @@ import { Modal, Button, Form } from 'react-bootstrap';
 
 
 
-const AdminForm = ({ onSave, adminSeleccionado, onClose }) => {
-  const [admin, setAdmin] = useState({ nombre: '', tipoDocumento: '', numeroDocumento: '', rol: 'Admin' });
+const EncargadoForm = ({ onSave, encargadoSeleccionado, onClose }) => {
+  const [encargado, setEncargado] = useState({ nombre: '', tipoDocumento: '', numeroDocumento: '', rol: 'Encargado' });
   
 
   useEffect(() => {
-    if (adminSeleccionado) {
-      const tipo = adminSeleccionado.documento.substring(0, 3);
-      const numero = adminSeleccionado.documento.substring(3);
-      setAdmin({ ...adminSeleccionado, tipoDocumento: tipo, numeroDocumento: numero });
+    if (encargadoSeleccionado) {
+      const tipo = encargadoSeleccionado.documento.substring(0, 3);
+      const numero = encargadoSeleccionado.documento.substring(3);
+      setEncargado({ ...encargadoSeleccionado, tipoDocumento: tipo, numeroDocumento: numero });
     } else {
-      setAdmin({ nombre: '', tipoDocumento: '', numeroDocumento: '', rol: 'Admin' });
+      setEncargado({ nombre: '', tipoDocumento: '', numeroDocumento: '', rol: 'Encargado' });
     }
-  }, [adminSeleccionado]);
+  }, [encargadoSeleccionado]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setAdmin({ ...admin, [name]: value });
+    setEncargado({ ...encargado, [name]: value });
   };
 
   const handleGuardar = () => {
     
 
-    const adminAGuardar = {
-      documento: `${admin.tipoDocumento}${admin.numeroDocumento}`,
-      nombre: admin.nombre,
-      rol: 'Admin',
+    const encargadoAGuardar = {
+      documento: `${encargado.tipoDocumento}${encargado.numeroDocumento}`,
+      nombre: encargado.nombre,
+      rol: 'Encargado',
     };
 
 
-    onSave(adminAGuardar);
+    onSave(encargadoAGuardar);
     onClose();
   };
 
   return (
     <Modal show={true} onHide={onClose}>
       <Modal.Header closeButton>
-        <Modal.Title>{adminSeleccionado ? 'Editar Admin' : 'Agregar Nuevo Admin'}</Modal.Title>
+        <Modal.Title>{encargadoSeleccionado ? 'Editar Encargado' : 'Agregar Nuevo Encargado'}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -48,9 +48,9 @@ const AdminForm = ({ onSave, adminSeleccionado, onClose }) => {
             <Form.Select
               aria-label="Default select example"
               name="tipoDocumento"
-              value={admin.tipoDocumento}
+              value={encargado.tipoDocumento}
               onChange={handleInputChange}
-              disabled={!!adminSeleccionado}
+              disabled={!!encargadoSeleccionado}
             >
               <option value="">Tipo de Documento</option>
               <option value="DNI">DNI</option>
@@ -66,9 +66,9 @@ const AdminForm = ({ onSave, adminSeleccionado, onClose }) => {
               type="text"
               placeholder="Ingrese el número de documento"
               name="numeroDocumento"
-              value={admin.numeroDocumento}
+              value={encargado.numeroDocumento}
               onChange={handleInputChange}
-              disabled={!!adminSeleccionado} // Deshabilitar este campo también al editar
+              disabled={!!encargadoSeleccionado} // Deshabilitar este campo también al editar
             />
           </Form.Group>
           <Form.Group controlId="formNombre">
@@ -77,7 +77,7 @@ const AdminForm = ({ onSave, adminSeleccionado, onClose }) => {
               type="text"
               placeholder="Ingrese el nombre"
               name="nombre"
-              value={admin.nombre}
+              value={encargado.nombre}
               onChange={handleInputChange}
             />
           </Form.Group>
@@ -88,11 +88,11 @@ const AdminForm = ({ onSave, adminSeleccionado, onClose }) => {
           Cerrar
         </Button>
         <Button variant="primary" onClick={handleGuardar}>
-          {adminSeleccionado ? 'Actualizar' : 'Guardar'}
+          {encargadoSeleccionado ? 'Actualizar' : 'Guardar'}
         </Button>
       </Modal.Footer>
     </Modal>
   );
 };
 
-export default AdminForm;
+export default EncargadoForm;

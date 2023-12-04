@@ -3,43 +3,38 @@ import { Modal, Button, Form } from 'react-bootstrap';
 
 
 
-const AdminForm = ({ onSave, adminSeleccionado, onClose }) => {
-  const [admin, setAdmin] = useState({ nombre: '', tipoDocumento: '', numeroDocumento: '', rol: 'Admin' });
-  
+const ResidenteForm = ({ onSave, residenteSeleccionado, onClose }) => {
+  const [residente, setResidente] = useState({ nombre: '', tipoDocumento: '', numeroDocumento: '', rol: 'Residente' });
 
   useEffect(() => {
-    if (adminSeleccionado) {
-      const tipo = adminSeleccionado.documento.substring(0, 3);
-      const numero = adminSeleccionado.documento.substring(3);
-      setAdmin({ ...adminSeleccionado, tipoDocumento: tipo, numeroDocumento: numero });
+    if (residenteSeleccionado) {
+      const tipo = residenteSeleccionado.documento.substring(0, 3);
+      const numero = residenteSeleccionado.documento.substring(3);
+      setResidente({ ...residenteSeleccionado, tipoDocumento: tipo, numeroDocumento: numero });
     } else {
-      setAdmin({ nombre: '', tipoDocumento: '', numeroDocumento: '', rol: 'Admin' });
+      setResidente({ nombre: '', tipoDocumento: '', numeroDocumento: '', rol: 'Residente' });
     }
-  }, [adminSeleccionado]);
+  }, [residenteSeleccionado]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setAdmin({ ...admin, [name]: value });
+    setResidente({ ...residente, [name]: value });
   };
 
   const handleGuardar = () => {
-    
-
-    const adminAGuardar = {
-      documento: `${admin.tipoDocumento}${admin.numeroDocumento}`,
-      nombre: admin.nombre,
-      rol: 'Admin',
+    const residenteAGuardar = {
+      documento: `${residente.tipoDocumento}${residente.numeroDocumento}`,
+      nombre: residente.nombre,
+      rol: 'Residente',
     };
-
-
-    onSave(adminAGuardar);
+    onSave(residenteAGuardar);
     onClose();
   };
 
   return (
     <Modal show={true} onHide={onClose}>
       <Modal.Header closeButton>
-        <Modal.Title>{adminSeleccionado ? 'Editar Admin' : 'Agregar Nuevo Admin'}</Modal.Title>
+        <Modal.Title>{residenteSeleccionado ? 'Editar Residente' : 'Agregar Nuevo Residente'}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -48,9 +43,9 @@ const AdminForm = ({ onSave, adminSeleccionado, onClose }) => {
             <Form.Select
               aria-label="Default select example"
               name="tipoDocumento"
-              value={admin.tipoDocumento}
+              value={residente.tipoDocumento}
               onChange={handleInputChange}
-              disabled={!!adminSeleccionado}
+              disabled={!!residenteSeleccionado}
             >
               <option value="">Tipo de Documento</option>
               <option value="DNI">DNI</option>
@@ -66,9 +61,9 @@ const AdminForm = ({ onSave, adminSeleccionado, onClose }) => {
               type="text"
               placeholder="Ingrese el número de documento"
               name="numeroDocumento"
-              value={admin.numeroDocumento}
+              value={residente.numeroDocumento}
               onChange={handleInputChange}
-              disabled={!!adminSeleccionado} // Deshabilitar este campo también al editar
+              disabled={!!residenteSeleccionado} 
             />
           </Form.Group>
           <Form.Group controlId="formNombre">
@@ -77,7 +72,7 @@ const AdminForm = ({ onSave, adminSeleccionado, onClose }) => {
               type="text"
               placeholder="Ingrese el nombre"
               name="nombre"
-              value={admin.nombre}
+              value={residente.nombre}
               onChange={handleInputChange}
             />
           </Form.Group>
@@ -88,11 +83,11 @@ const AdminForm = ({ onSave, adminSeleccionado, onClose }) => {
           Cerrar
         </Button>
         <Button variant="primary" onClick={handleGuardar}>
-          {adminSeleccionado ? 'Actualizar' : 'Guardar'}
+          {residenteSeleccionado ? 'Actualizar' : 'Guardar'}
         </Button>
       </Modal.Footer>
     </Modal>
   );
 };
 
-export default AdminForm;
+export default ResidenteForm;

@@ -1,75 +1,85 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Row, Col } from 'react-bootstrap';
-import AdminForm from '../Form';
-import LoadingSkeleton from '../../../LoadingSkeleton';
-import { obtenerPersonasPorRol, agregarPersona, eliminarPersona, editarPersona } from '../../../Context/Persona';
+import { Button, Container, Row, Col , Modal, Spinner } from 'react-bootstrap';
+import EmpleadoForm from '../Form';
+import LoadingSkeleton from '../../../../Components/LoadingSkeleton';
+import { obtenerPersonasPorRol, agregarPersona, eliminarPersona, editarPersona } from '../../../../Context/Persona';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import Layout from '../../Layout';
-const EncargadoAbmPage = () => {
-  const [admins, setAdmins] = useState([]);
-  const [adminSeleccionado, setAdminSeleccionado] = useState(null);
+import Layout from '../../../Layout';
+const EmpleadoAbm = () => {
+  const [empleado, setEmpleado] = useState([]);
+  const [empleadoSeleccionado, setEmpleadoSeleccionado] = useState(null);
   const [mostrarModal, setMostrarModal] = useState(false);
   const [loading, setLoading] = useState(true);
-
+  const [mostrarModalCarga, setMostrarModalCarga] = useState(false);
   
 
   useEffect(() => {
-    const fetchUsuario = async () => {
+    const fetchEmpleado = async () => {
       try {
         const data = await obtenerPersonasPorRol('Empleado');
-        setUsuario(data);
-        setUsuario(false);
+        setEmpleado(data);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
-    fetchUsuario();
+    fetchEmpleado();
   }, []);
 
-  const handleGuardarEncargado = async (encargado) => {
+  const handleGuardarEmpleado = async (empleado) => {
+    setMostrarModalCarga(true);
     try {
-      console.log('admin', admin);
-      console.log('adminSeleccionado', adminSeleccionado);
-      if (adminSeleccionado) {
+      console.log('empleado', empleado);
+      console.log('empleadoSeleccionado', empleadoSeleccionado);
+      if (empleadoSeleccionado) {
         
-        await editarPersona(admin); // Editar admin existente
+        await editarPersona(empleado); 
         
       } else {
-        await agregarPersona(admin); // Agregar nuevo admin
+        await agregarPersona(empleado); 
       }
 
-      const data = await obtenerPersonasPorRol('Admin');
-      setAdmins(data);
+      const data = await obtenerPersonasPorRol('Empleado');
+      setEmpleado(data);
       setMostrarModal(false);
     } catch (error) {
-      console.error('Error saving admin:', error);
+      console.error('Error saving empleado:', error);
+    }
+    finally {
+      setMostrarModalCarga(false); // Ocultar modal de carga
     }
   };
 
-  const handleEliminarAdmin = async (documento) => {
+  const handleEliminarEmpleado = async (documento) => {
+    setMostrarModalCarga(true);
+
     try {
+      console.log('documento', documento);
       await eliminarPersona(documento);
-      const data = await obtenerPersonasPorRol('Admin');
-      setAdmin(data);
+      const data = await obtenerPersonasPorRol('Empleado');
+      setEmpleado(data);
     } catch (error) {
-      console.error('Error deleting admin:', error);
+      console.error('Error deleting empleado:', error);
+    }
+    finally {
+      setMostrarModalCarga(false); // Ocultar modal de carga
     }
   };
 
-  const handleEditarAdmin = (documento) => {
-    const adminEditar = admins.find((admin) => admin.documento === documento);
-    setAdminSeleccionado(adminEditar);
+  const handleEditarEmpleado = (documento) => {
+    const empleadoEditar = empleado.find((empleado) => empleado.documento === documento);
+    setEmpleadoSeleccionado(empleadoEditar);
     setMostrarModal(true);
   };
 
-  const handleAgregarAdmin = () => {
-    setAdminSeleccionado(null);
+  const handleAgregarEmpleado = () => {
+    setEmpleadoSeleccionado(null);
     setMostrarModal(true);
   };
 
   const handleCerrarModal = () => {
-    setAdminSeleccionado(null);
+    setEmpleadoSeleccionado(null);
     setMostrarModal(false);
   };
 
@@ -78,7 +88,7 @@ const EncargadoAbmPage = () => {
       <Container>
         <Row className="mt-3">
           <Col>
-            <Button variant="primary" onClick={handleAgregarAdmin} className="mb-3">
+            <Button variant="primary" onClick={handleAgregarEmpleado} className="mb-3">
             <PersonAddIcon/>
             </Button>
           </Col>
@@ -89,16 +99,16 @@ const EncargadoAbmPage = () => {
             <LoadingSkeleton />
           ) : (
             <>
-              {admins.map((admin) => (
-                <Col key={admin.documento} md={4} className="mb-3">
+              {empleado.map((empleado) => (
+                <Col key={empleado.documento} md={4} className="mb-3">
                   <div className="card">
                     <div className="card-body">
-                      <h5 className="card-title">{admin.nombre}</h5>
-                      <p className="card-text">{admin.documento}</p>
-                      <Button variant="outline-primary" onClick={() => handleEditarAdmin(admin.documento)}>
+                      <h5 className="card-title">{empleado.nombre}</h5>
+                      <p className="card-text">{empleado.documento}</p>
+                      <Button variant="outline-primary" onClick={() => handleEditarEmpleado(empleado.documento)}>
                         Editar
                       </Button>
-                      <Button variant="outline-danger" onClick={() => handleEliminarAdmin(admin.documento)} className="ml-2">
+                      <Button variant="outline-danger" onClick={() => handleEliminarEmpleado(empleado.documento)} className="ml-2">
                         Eliminar
                       </Button>
                     </div>
@@ -109,11 +119,21 @@ const EncargadoAbmPage = () => {
           )}
         </Row>
         {mostrarModal && (
-          <AdminForm onSave={handleGuardarAdmin} onDelete={handleEliminarAdmin} adminSeleccionado={adminSeleccionado} onClose={handleCerrarModal} />
+          <EmpleadoForm onSave={handleGuardarEmpleado} onDelete={handleEliminarEmpleado} empleadoSeleccionado={empleadoSeleccionado} onClose={handleCerrarModal} />
         )}
+        <Modal show={mostrarModalCarga} centered>
+          <Modal.Body>
+            <div className="text-center">
+              <Spinner animation="border" role="status">
+                <span className="sr-only">Cargando...</span>
+              </Spinner>
+              <p>Procesando...</p>
+            </div>
+          </Modal.Body>
+        </Modal>
       </Container>
     </Layout>
   );
 };
 
-export default AdminAbmPage;
+export default EmpleadoAbm;

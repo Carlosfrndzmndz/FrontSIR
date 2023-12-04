@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import { Button, Container, Row, Col, Modal, Spinner } from 'react-bootstrap';
 import AdminForm from '../Form';
 import LoadingSkeleton from '../../../../Components/LoadingSkeleton';
 import { obtenerPersonasPorRol, agregarPersona, eliminarPersona, editarPersona } from '../../../../Context/Persona';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import Layout from '../../../Layout';
+
 const AdminAbmPage = () => {
   const [admins, setAdmins] = useState([]);
   const [adminSeleccionado, setAdminSeleccionado] = useState(null);
   const [mostrarModal, setMostrarModal] = useState(false);
   const [loading, setLoading] = useState(true);
-
-  
+  const [mostrarModalCarga, setMostrarModalCarga] = useState(false); // Estado para el modal de carga
 
   useEffect(() => {
     const fetchAdmin = async () => {
@@ -28,32 +28,33 @@ const AdminAbmPage = () => {
   }, []);
 
   const handleGuardarAdmin = async (admin) => {
+    setMostrarModalCarga(true); // Mostrar modal de carga
     try {
-      console.log('admin', admin);
-      console.log('adminSeleccionado', adminSeleccionado);
       if (adminSeleccionado) {
-        
-        await editarPersona(admin); // Editar admin existente
-        
+        await editarPersona(admin);
       } else {
-        await agregarPersona(admin); // Agregar nuevo admin
+        await agregarPersona(admin);
       }
-
       const data = await obtenerPersonasPorRol('Admin');
       setAdmins(data);
       setMostrarModal(false);
     } catch (error) {
       console.error('Error saving admin:', error);
+    } finally {
+      setMostrarModalCarga(false); // Ocultar modal de carga
     }
   };
 
   const handleEliminarAdmin = async (documento) => {
+    setMostrarModalCarga(true); // Mostrar modal de carga
     try {
       await eliminarPersona(documento);
       const data = await obtenerPersonasPorRol('Admin');
-      setAdmin(data);
+      setAdmins(data);
     } catch (error) {
       console.error('Error deleting admin:', error);
+    } finally {
+      setMostrarModalCarga(false); // Ocultar modal de carga
     }
   };
 
@@ -79,7 +80,7 @@ const AdminAbmPage = () => {
         <Row className="mt-3">
           <Col>
             <Button variant="primary" onClick={handleAgregarAdmin} className="mb-3">
-            <PersonAddIcon/>
+              <PersonAddIcon/>
             </Button>
           </Col>
         </Row>
@@ -111,6 +112,19 @@ const AdminAbmPage = () => {
         {mostrarModal && (
           <AdminForm onSave={handleGuardarAdmin} onDelete={handleEliminarAdmin} adminSeleccionado={adminSeleccionado} onClose={handleCerrarModal} />
         )}
+
+        {/* Modal de carga */}
+
+        <Modal show={mostrarModalCarga} centered>
+          <Modal.Body>
+            <div className="text-center">
+              <Spinner animation="border" role="status">
+                <span className="sr-only">Cargando...</span>
+              </Spinner>
+              <p>Procesando...</p>
+            </div>
+          </Modal.Body>
+        </Modal>
       </Container>
     </Layout>
   );

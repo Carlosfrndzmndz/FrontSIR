@@ -14,15 +14,6 @@ const EmpleadoNavbar = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <NavLink to='/empleado/residentes' className='nav-link'>
-                        Residentes
-                    </NavLink>
-                    <NavLink to='/empleado/empleados' className='nav-link'>
-                        Empleados
-                    </NavLink>
-                    <NavLink to='/empleado/reclamos' className='nav-link'>
-                        Reclamos
-                    </NavLink>
                     <NavDropdown title="Edificios" id="basic-nav-dropdown">
                         <NavDropdown.Item>
                             <NavLink to='/empleado/edificios/abm' className="nav-link">Listado de edificios</NavLink>
@@ -60,6 +51,12 @@ const EmpleadoNavbar = () => {
                             <NavLink to='/empleado/unidad/agregar-inquilino' className="nav-link">Agregar inquilino</NavLink>
                         </NavDropdown.Item>
                     </NavDropdown>
+                    <NavLink to='/empleado/residentes' className='nav-link'>
+                        Residentes
+                    </NavLink>
+                    <NavLink to='/empleado/reclamos' className='nav-link'>
+                        Reclamos
+                    </NavLink>
                 </Nav>
                 <Nav>
                     <NavLink to='/perfil' className='nav-link'><PersonIcon/></NavLink>

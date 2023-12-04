@@ -56,8 +56,8 @@ const UserStatsCard = ({ registeredUsers, confirmedNoPassword, noConfirmNoPasswo
         </Row>
         <Row className="mt-3">
           <Col md={12} className="text-center">
+            <p className="font-weight-bold"> . </p>
             <p className="font-weight-bold"><strong>Total de Usuarios: </strong>{totalUsers}</p>
-            <p className="font-weight-bold"><strong>Usuarios Registrados en las ultimas 24hs:</strong> {usersLast24Hours}</p>
           </Col>
         </Row>
       </Card.Body>

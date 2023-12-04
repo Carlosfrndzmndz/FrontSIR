@@ -5,6 +5,8 @@ import UserStatsCard from '../../../../Components/Users/StatsCard';
 import ClaimsStatsCard from '../../../../Components/Reclamo/ReclamosPorMes';
 import {CardsInfoGeneral} from '../../../../Components/Dashboad';
 import Layout from '../../../../Components/Layout';
+import { getReporteUsuarios } from '../../../../Context/Persona';
+import { useState, useEffect } from 'react';
 
 const claimsData = {
   Enero: 12,  Febrero: 20,  Marzo: 15,  Abril: 8,
@@ -12,7 +14,23 @@ const claimsData = {
   Septiembre: 9,  Octubre: 15,  Noviembre: 11,
   Diciembre: 18,
 }
-const SuperAdminHome = () => {
+const SuperAdminHome = () => {const [reporteUsuarios, setReporteUsuarios] = useState([]);
+
+  useEffect(() => {
+    const fetchReporteUsuarios = async () => {
+      try {
+        const data = await getReporteUsuarios();
+        setReporteUsuarios(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchReporteUsuarios();
+  }, []);
+
+  // Asegúrate de que reporteUsuarios tiene datos antes de desestructurarlo
+  const [registeredUsers, confirmedNoPassword, noConfirmNoPassword] = reporteUsuarios.length > 0 ? reporteUsuarios : [0, 0, 0];
+
 
   return (
     <>
@@ -24,9 +42,9 @@ const SuperAdminHome = () => {
               <div className="h-100">
                 <UserStatsCard
                   totalUsers={500}
-                  registeredUsers={50}
-                  confirmedNoPassword={80}
-                  noConfirmNoPassword={10}
+                  registeredUsers={registeredUsers}
+                  confirmedNoPassword={confirmedNoPassword}
+                  noConfirmNoPassword={noConfirmNoPassword}
                   usersLast24Hours={10}
                 />
               </div>

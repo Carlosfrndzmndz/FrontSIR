@@ -52,9 +52,17 @@ const AdminNavbar = () => {
                             <NavLink to='/admin/edificios/habitantes' className="nav-link">Habitantes por edificio</NavLink>
                         </NavDropdown.Item>
                     </NavDropdown>
-                    <NavLink to='/admin/usuarios' className='nav-link'>
-                        Usuarios
-                    </NavLink>
+                    <NavDropdown title="Usuarios" id="basic-nav-dropdown">
+                        <NavDropdown.Item>
+                            <NavLink to='/admin/residentes/abm' className="nav-link">Residentes</NavLink>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <NavLink to='/admin/empleados/abm' className="nav-link">Empleados</NavLink>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <NavLink to='/admin/encargados/abm' className="nav-link">Encargados</NavLink>
+                        </NavDropdown.Item>
+                    </NavDropdown>
                     <NavDropdown title="Reclamos" id="basic-nav-dropdown">
                         <NavDropdown.Item>
                             <NavLink to='/admin/reclamos/lista' className="nav-link">Lista de Reclamos</NavLink>

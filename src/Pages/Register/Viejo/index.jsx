@@ -1,6 +1,6 @@
 // Register.js
 import React from 'react';
-import Layout from "../../Components/Layout";
+import Layout from "../../../Components/Layout";
 import './Register.css';
 import { DocumentAndEmailStep, VerificationCodeStep, PasswordStep  } from './Steps';
 import useRegisterForm from './useRegisterForm';

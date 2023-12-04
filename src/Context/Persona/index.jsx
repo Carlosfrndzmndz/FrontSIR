@@ -61,7 +61,7 @@ const obtenerPersonasPorRol = async (rol) => {
 }
 
 const eliminarPersona = async (documento) => {
-const response = await axios.delete(url + '/eliminar', {
+const response = await axios.delete(apiUrl + 'eliminar', {
     headers: {
         Authorization: `Bearer ${getToken()}`
     },
@@ -74,14 +74,14 @@ return response.data;
 }
 
 const editarPersona = async (nuevaPersona) => {
-    
     const response = await axios.patch(apiUrl + 'modificar',{
         documento: nuevaPersona.documento,
         nombre: nuevaPersona.nombre,
-        rol: nuevaPersona.rol
+        roles: nuevaPersona.rol
     }, {
         headers: {
-            Authorization: `Bearer ${getToken()}`
+            Authorization: `Bearer ${getToken()}`,
+            'Content-Type': 'application/json'
         }
 
     });
@@ -89,4 +89,14 @@ const editarPersona = async (nuevaPersona) => {
     return response.data;
 }
 
-export{getRol , agregarPersona , obtenerPersonasPorRol , eliminarPersona , editarPersona}
+const getReporteUsuarios = async () => {
+    const response = await axios.get(apiUrl + 'getReporteUsuarios', {
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    });
+
+    return response.data;
+}
+
+export{getRol , agregarPersona , obtenerPersonasPorRol , eliminarPersona , editarPersona , getReporteUsuarios}
