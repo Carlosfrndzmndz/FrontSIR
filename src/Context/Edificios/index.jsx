@@ -61,7 +61,7 @@ const unidadesPorEdificio = async (codigo) => {
         }
     });
 
-    return response.data;
+    return response;
 }
 
 const buscarPorcodigo = async (codigo) => {

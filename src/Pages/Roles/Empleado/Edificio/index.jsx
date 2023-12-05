@@ -1,6 +1,6 @@
 import Abm from "../../../../Components/Edificios/Abm";
 import EmpleadoNavbar from "../../../../Components/Navbar/Empleado";
-function EmpleadoEdificioAbm(){
+function InquilinoEmpleadoListado(){
     return(
         <>
             <EmpleadoNavbar/>
@@ -9,4 +9,4 @@ function EmpleadoEdificioAbm(){
     )
 }
 
-export default EmpleadoEdificioAbm;
+export default InquilinoEmpleadoListado;

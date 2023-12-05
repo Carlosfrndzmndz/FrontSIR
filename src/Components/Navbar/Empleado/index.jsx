@@ -22,35 +22,16 @@ const EmpleadoNavbar = () => {
                             <NavLink to='/empleado/edificios/habilitados' className="nav-link">Habilitados por edificio</NavLink>
                         </NavDropdown.Item>
                         <NavDropdown.Item>
-                            <NavLink to='/empleado/edificios/duenos' className="nav-link">Dueños por edificio</NavLink>
+                            <NavLink to='/empleado/edificios/duenios' className="nav-link">Dueños por edificio</NavLink>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <NavLink to='/empleado/edificios/inquilinos' className="nav-link">Inquilinos por edificio</NavLink>
                         </NavDropdown.Item>
                         <NavDropdown.Item>
                             <NavLink to='/empleado/edificios/habitantes' className="nav-link">Habitantes por edificio</NavLink>
                         </NavDropdown.Item>
                     </NavDropdown>
-                    <NavDropdown title="Gestionar Unidad" id="basic-nav-dropdown">
-                        <NavDropdown.Item>
-                            <NavLink to='/empleado/unidad/abm' className="nav-link">Listado de unidades</NavLink>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item>
-                            <NavLink to='/empleado/unidad/transferencia-unidad' className="nav-link">Transferencia de unidad</NavLink>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item>
-                            <NavLink to='/empleado/unidad/alquiler' className="nav-link">Alquiler de unidad</NavLink>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item>
-                            <NavLink to='/empleado/unidad/liberar' className="nav-link">Liberar unidad</NavLink>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item>
-                            <NavLink to='/empleado/unidad/habitar' className="nav-link">Habitar unidad</NavLink>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item>
-                            <NavLink to='/empleado/unidad/agregar-dueno' className="nav-link">Agregar Dueño</NavLink>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item>
-                            <NavLink to='/empleado/unidad/agregar-inquilino' className="nav-link">Agregar inquilino</NavLink>
-                        </NavDropdown.Item>
-                    </NavDropdown>
+                    <NavLink to='/empleado/unidad/abm' className="nav-link">Gestionar Unidad</NavLink>
                     <NavLink to='/empleado/residentes' className='nav-link'>
                         Residentes
                     </NavLink>

@@ -1,12 +1,12 @@
 import Abm from "../../../../Components/Edificios/Abm";
-import EmpleadoNavbar from "../../../../Components/Navbar/Empleado";
-function EmpleadoEdificioAbm(){
+import EncargadoNavbar from "../../../../Components/Navbar/Encargado";
+function InquilinosEncargadoListado(){
     return(
         <>
-            <EmpleadoNavbar/>
+            <EncargadoNavbar/>
             <Abm/>
         </>
     )
 }
 
-export default EmpleadoEdificioAbm;
+export default InquilinosEncargadoListado;

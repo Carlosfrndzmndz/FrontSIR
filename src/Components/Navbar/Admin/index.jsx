@@ -15,29 +15,6 @@ const AdminNavbar = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <NavDropdown title="Gestionar Unidad" id="basic-nav-dropdown">
-                        <NavDropdown.Item>
-                            <NavLink to='/admin/unidad/abm' className="nav-link">Listado de unidades</NavLink>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item>
-                            <NavLink to='/admin/unidad/transferencia-unidad' className="nav-link">Transferencia de unidad</NavLink>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item>
-                            <NavLink to='/admin/unidad/alquiler' className="nav-link">Alquiler de unidad</NavLink>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item>
-                            <NavLink to='/admin/unidad/liberar' className="nav-link">Liberar unidad</NavLink>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item>
-                            <NavLink to='/admin/unidad/habitar' className="nav-link">Habitar unidad</NavLink>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item>
-                            <NavLink to='/admin/unidad/agregar-dueno' className="nav-link">Agregar Dueño</NavLink>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item>
-                            <NavLink to='/admin/unidad/agregar-inquilino' className="nav-link">Agregar inquilino</NavLink>
-                        </NavDropdown.Item>
-                    </NavDropdown>
                     <NavDropdown title="Edificios" id="basic-nav-dropdown">
                         <NavDropdown.Item>
                             <NavLink to='/admin/edificios/abm' className="nav-link">Listado de edificios</NavLink>
@@ -46,12 +23,16 @@ const AdminNavbar = () => {
                             <NavLink to='/admin/edificios/habilitados' className="nav-link">Habilitados por edificio</NavLink>
                         </NavDropdown.Item>
                         <NavDropdown.Item>
-                            <NavLink to='/admin/edificios/duenos' className="nav-link">Dueños por edificio</NavLink>
+                            <NavLink to='/admin/edificios/duenios' className="nav-link">Dueños por edificio</NavLink>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <NavLink to='/admin/edificios/inquilinos' className="nav-link">Inquilinos por edificio</NavLink>
                         </NavDropdown.Item>
                         <NavDropdown.Item>
                             <NavLink to='/admin/edificios/habitantes' className="nav-link">Habitantes por edificio</NavLink>
                         </NavDropdown.Item>
-                    </NavDropdown>
+                    </NavDropdown>    
+                    <NavLink to='/admin/unidad/abm' className="nav-link">Gestionar Unidad</NavLink>
                     <NavDropdown title="Usuarios" id="basic-nav-dropdown">
                         <NavDropdown.Item>
                             <NavLink to='/admin/residentes/abm' className="nav-link">Residentes</NavLink>
