@@ -18,7 +18,19 @@ const EncargadoNavbar = () => {
                     <NavDropdown.Item><NavLink to='/encargado/reclamos/abm' className="nav-link">ABM</NavLink></NavDropdown.Item>
                 <NavDropdown.Item><NavLink to='/encargado/reclamos/dashboard' className="nav-link">Dashboard</NavLink></NavDropdown.Item>
                 </NavDropdown>
+                <NavDropdown title="Edificios" id="basic-nav-dropdown">
+                        <NavDropdown.Item>
+                            <NavLink to='/encargado/edificios/habilitados' className="nav-link">Habilitados por edificio</NavLink>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <NavLink to='/encargado/edificios/duenos' className="nav-link">Dueños por edificio</NavLink>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <NavLink to='/encargado/edificios/habitantes' className="nav-link">Habitantes por edificio</NavLink>
+                        </NavDropdown.Item>
+                    </NavDropdown>
                 </Nav>
+                
                 <Nav>
                     <NavLink to='/perfil' className='nav-link'><PersonIcon/></NavLink>
                     <NavLink to='/' className='nav-link'><LogoutIcon/></NavLink>

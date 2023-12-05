@@ -106,7 +106,7 @@ const obtenerDuenios = async (codigo) => {
     return response;
 }
 
-const habitantes = async (codigo) => {
+const habitantesPorEdificio = async (codigo) => {
 
     const response = await axios.get(rutaApi + '/habitantes?codigo=' + codigo, {
         headers: {
@@ -116,5 +116,15 @@ const habitantes = async (codigo) => {
     return response;
 }
 
-export {obtenerEdificios, agregarEdificio, eliminarEdificio, editarEdificio, unidadesPorEdificio,
-    buscarPorcodigo,habilitadosPorEdificio, obtenerInquilinos, obtenerDuenios, habitantes}
+const obtenerEdificioPorCodigo = async (codigo) => {
+
+    const response = await axios.get(rutaApi + '/obtenerSelectorEdificio', {
+        headers: {
+            'Authorization': `Bearer ${getToken()}`
+        }
+    });
+    return response;
+}
+
+export {obtenerEdificios, agregarEdificio, eliminarEdificio, editarEdificio, unidadesPorEdificio,buscarPorcodigo,
+    habilitadosPorEdificio, obtenerInquilinos, obtenerDuenios, habitantesPorEdificio, obtenerEdificioPorCodigo}

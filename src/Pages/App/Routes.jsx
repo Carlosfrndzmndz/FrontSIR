@@ -5,7 +5,7 @@ import Login from '../Login';
 import NotFound from '../NotFound';
 import Perfil from '../Perfil';
 import RegistroPage from '../Register/nuevo';
-import AdminEdificios from '../Roles/Admin/Edificio';
+import AdminEdificios from '../Roles/Admin/Edificio/Listado';
 import AdminHome from '../Roles/Admin/Home';
 import AdminReclamos from '../Roles/Admin/Reclamos';
 import AdminResidentes from '../Roles/Admin/Residentes';
@@ -29,7 +29,10 @@ import VerificarCodigo from '../Register/confirmarToken';
 import RegistrarPassword from '../Register/RegistrarPassword';
 import IngresoCorreo from '../RecuperoContraseña';
 import NuevaContraseña from '../CambiarContraseña';
-
+import HabitantesAdminListado from '../Roles/Admin/Edificio/Habitantes';
+import HabitantesEmpleadoListado from '../Roles/Empleado/Edificio/Habitantes';
+import HabitantesEncargadoListado from '../Roles/Encargado/Edificio/Habitantes';
+import HabilitadosAdminListado from '../Roles/Admin/Edificio/Habilitados';
 const AppRoutes = () => {
   return (
     <Routes>
@@ -59,19 +62,21 @@ const AppRoutes = () => {
       <Route path="/admin/unidades/transferencia-unidad" element={<PrivateRoute><AdminUnidades /></PrivateRoute>} />
       <Route path="/admin/encargados/abm" element={<PrivateRoute><EncargadoABM/></PrivateRoute>} />
       <Route path="/admin/empleados/abm" element={<PrivateRoute><EmpleadoAbm/></PrivateRoute>} />
-      <Route path="admin/residentes/abm" element={<PrivateRoute><AdminResidentesAbm/></PrivateRoute>} />
-
+      <Route path="/admin/residentes/abm" element={<PrivateRoute><AdminResidentesAbm/></PrivateRoute>} />
+      <Route path="/admin/edificios/habitantes" element={<PrivateRoute><HabitantesAdminListado /></PrivateRoute>} />
+      <Route path="/admin/edificios/habilitados" element={<PrivateRoute><HabilitadosAdminListado /></PrivateRoute>} />
       {/** Empleado*/}
       <Route path="/empleado/home" element={<PrivateRoute><EmpleadoHome /></PrivateRoute>} />
       <Route path="/empleado/edificios/abm" element={<PrivateRoute><EmpleadoEdificioAbm /></PrivateRoute>} />
       <Route path="/empleado/unidad/abm" element={<PrivateRoute><EmpleadoUnidades/></PrivateRoute>} />
-      <Route path="/empleado/unidad/abm" element={<PrivateRoute><EmpleadoUnidades/></PrivateRoute>} />
+      <Route path="/empleado/edificios/habitantes" element={<PrivateRoute><HabitantesEmpleadoListado/></PrivateRoute>} />
 
       {/** Encargado*/}
       <Route path="/encargado/home" element={<PrivateRoute><EncargadoHome /></PrivateRoute>} />
       <Route path="/empleado/residentes" element={<PrivateRoute><EmpleadoResidentesAbm /></PrivateRoute>} />
-
-      {/** Residente*/}
+      <Route path="/encargado/edificios/habitantes" element={<PrivateRoute><HabitantesEncargadoListado /></PrivateRoute>} />
+      
+      {/** Residente*/} 
       <Route path="/residente/home" element={<PrivateRoute><ResidenteHome /></PrivateRoute>} />
       <Route path="/residente/reclamos" element={<PrivateRoute><ResidenteReclamos /></PrivateRoute>} />
       <Route path="/residente/unidades" element={<PrivateRoute><ResidenteReclamos /></PrivateRoute>} />

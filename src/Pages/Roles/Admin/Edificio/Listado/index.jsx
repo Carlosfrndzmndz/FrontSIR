@@ -1,5 +1,5 @@
-import Abm from "../../../../Components/Edificios/Abm";
-import AdminNavbar from "../../../../Components/Navbar/Admin";
+import Abm from "../../../../../Components/Edificios/Abm";
+import AdminNavbar from "../../../../../Components/Navbar/Admin";
 function AdminHome(){
     return(
         <>

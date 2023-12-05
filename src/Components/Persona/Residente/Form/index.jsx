@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-
-
-
+3
 const ResidenteForm = ({ onSave, residenteSeleccionado, onClose }) => {
   const [residente, setResidente] = useState({ nombre: '', tipoDocumento: '', numeroDocumento: '', rol: 'Residente' });
 
