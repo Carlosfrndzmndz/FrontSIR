@@ -13,9 +13,15 @@ const UnidadForm = ({ onSave, unidadSeleccionado, onClose, edificio }) => {
 
   useEffect(() => {
     if (unidadSeleccionado) {
-      setUnidad({ unidadSeleccionado});
+      const unidadRecibida = {
+        edificio: unidadSeleccionado.edificio,
+        piso: unidadSeleccionado.piso,
+        numero: unidadSeleccionado.numero,
+        identificador: unidadSeleccionado.identificador
+      };
+      setUnidad(unidadRecibida);
     } else {
-      setUnidad({ estadoInicial });
+      setUnidad(estadoInicial);
     }
   }, [unidadSeleccionado, edificio]);
 
@@ -25,7 +31,14 @@ const UnidadForm = ({ onSave, unidadSeleccionado, onClose, edificio }) => {
   };
 
   const handleGuardar = () => {
-    onSave(unidad);
+    console.log('unidad', unidad);
+    const unidadAGuardar = {
+      edificio: unidad.edificio.codigo ? unidad.edificio.codigo : unidadSeleccionado.edificio.codigo,
+      piso: unidad.piso ? unidad.piso : unidadSeleccionado.piso,
+      numero: unidad.numero ? unidad.numero : unidadSeleccionado.numero,
+      identificador: unidad.identificador ? unidad.identificador : unidadSeleccionado.identificador
+    };
+    onSave(unidadAGuardar);
     onClose();
   };
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { login } from '../../Context/Auth';
-import { getRol } from '../../Context/Persona';
+import { buscarPersonasPorMail } from '../../Context/Persona';
 import Layout from "../../Components/Layout";
 
 const LoginForm = () => {
@@ -21,7 +21,9 @@ const LoginForm = () => {
         localStorage.setItem('token', response.token);
 
         // Redirige según el rol del usuario
-        const userRole = await getRol(email); 
+        const data = await buscarPersonasPorMail(email);
+        const userRole = data.rol;
+        localStorage.setItem('documento', data.documento);
         const ruta = '/'+userRole+'/home';
         window.location.href = ruta;
         if (rememberMe) {

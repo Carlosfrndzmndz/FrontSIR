@@ -99,6 +99,18 @@ const getReporteUsuarios = async () => {
     return response.data;
 }
 
+const buscarPersonasPorMail = async (mail) => {
+    const response = await axios.get(apiUrl + `getPersonaPorMail?mail=${mail}`, {
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    });
+
+    return response.data;
+
+}
+
+
 const getPorDocumento = async (documento) => {
     const response = await axios.get(apiUrl + `buscar?documento=${documento}`, {
         headers: {
@@ -109,4 +121,4 @@ const getPorDocumento = async (documento) => {
     return response.data;
 }
 
-export{getRol , agregarPersona , obtenerPersonasPorRol , eliminarPersona , editarPersona , getReporteUsuarios , getPorDocumento}
+export{getRol , agregarPersona , obtenerPersonasPorRol , eliminarPersona , editarPersona , getReporteUsuarios , getPorDocumento, buscarPersonasPorMail}

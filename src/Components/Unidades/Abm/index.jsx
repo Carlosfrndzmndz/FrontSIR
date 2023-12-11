@@ -1,12 +1,17 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Button, Container, Row, Col, Form, Modal, Spinner } from 'react-bootstrap';
-import { FiEdit, FiTrash2, FiPlus, FiSearch } from 'react-icons/fi';
+import { FiSearch } from 'react-icons/fi';
+import { MdOutlineAddHome } from "react-icons/md";
+import { FaEdit ,FaTrash } from "react-icons/fa";
+import { SlOptions } from "react-icons/sl";
 import UnidadForm from '../Form';
 import LoadingSkeleton from '../../LoadingSkeleton';
 import { agregarUnidad, editarUnidad, eliminarUnidad } from '../../../Context/Unidad';
 import { obtenerEdificioPorCodigo, unidadesPorEdificio } from '../../../Context/Edificios';
 import { useTable, useGlobalFilter, useSortBy } from 'react-table';
 import './UnidadesPage.css';
+import { MdEdit } from "react-icons/md";
+import AccionesUnidadModal from '../MasOpciones';
 
 function GlobalFilter({ globalFilter, setGlobalFilter }) {
   return (
@@ -30,6 +35,7 @@ const UnidadesPage = () => {
   const [unidadSeleccionado, setUnidadSeleccionado] = useState({ edificio: { codigo: '', nombre: '' }, piso: '', numero: '', identificador: null });
   const [mostrarModal, setMostrarModal] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [mostrarModalCarga, setMostrarModalCarga] = useState(false);
 
   useEffect(() => {
@@ -79,58 +85,75 @@ const UnidadesPage = () => {
   };
 
   const handleGuardarUnidad = async (nuevaUnidad) => {
+    setMostrarModalCarga(true);
     try {
       if (nuevaUnidad.identificador) {
-        console.log('nuevaUnidad', nuevaUnidad);
-        await editarUnidad(nuevaUnidad);
-      } else {
-        console.log('nuevaUnidad', nuevaUnidad);
         const unidad = {
-          codigo: nuevaUnidad.unidadSeleccionado.edificio.codigo,
+          identificador: nuevaUnidad.identificador,
+          codigo: nuevaUnidad.edificio,
           piso: nuevaUnidad.piso,
           numero: nuevaUnidad.numero
         }
-        console.log('unidad', unidad);
-        await agregarUnidad(unidad);
+        console.log('unidad-----------', unidad);
+        await editarUnidad(unidad);
+      } else {
+        const unidadCrear = {
+          codigo: nuevaUnidad.edificio,
+          piso: nuevaUnidad.piso,
+          numero: nuevaUnidad.numero
+        }
+        await agregarUnidad(unidadCrear);
       }
-      fetchUnidades(edificioSeleccionado.codigo);
+      fetchUnidades(edificioSeleccionado[0]);
       setMostrarModal(false);
     } catch (error) {
       console.error('Error saving unidad:', error);
     }
+    finally {
+      setMostrarModalCarga(false);
+    }
   };
 
   const handleEliminarUnidad = async (codigo) => {
+    setMostrarModalCarga(true);
     try {
       await eliminarUnidad(codigo);
-      fetchUnidades(edificioSeleccionado.codigo);
+      fetchUnidades(edificioSeleccionado[0]);
     } catch (error) {
       console.error('Error deleting unidad:', error);
+    }
+    finally {
+      setMostrarModalCarga(false);
     }
   };
 
   const handleAgregarUnidad = () => {
-    console.log('edificioSeleccionado agregar', edificioSeleccionado);
-    setUnidadSeleccionado({ edificio: { codigo: edificioSeleccionado, nombre: edificioSeleccionado[2] }, piso: '', numero: '', identificador: null });
-    console.log('unidadSeleccionado ABM', unidadSeleccionado);
+    setUnidadSeleccionado({ edificio: { codigo: edificioSeleccionado[0], nombre: edificioSeleccionado[2] }, piso: '', numero: '', identificador: null });
+    console.log('unidadSeleccionado', unidadSeleccionado);
     setMostrarModal(true);
   };
 
-  const handleEditarUnidad = (identificador) => {
-    console.log('identificador', identificador);
-    console.log('unidades:', unidades);
-
-    const unidadEditar = unidades.find((unidad) => unidad.id === identificador);
-    console.log('unidad Editar ABM', unidadEditar);
-    console.log(edificioSeleccionado);
-    setUnidadSeleccionado({ edificio: edificioSeleccionado, piso: unidadEditar.piso, numero: unidadEditar.numero, identificador: unidadEditar.id });
+  const handleEditarUnidad = (unidad) => {
     setMostrarModal(true);
+    const unidadEditar = unidad;
+    setUnidadSeleccionado({ edificio: unidadEditar.edificio, piso: unidadEditar.piso, numero: unidadEditar.numero, identificador: unidadEditar.id });
   };
 
   const handleCerrarModal = () => {
     setUnidadSeleccionado(null);
     setMostrarModal(false);
   };
+
+  const handleOpciones = (unidad) => {
+    setUnidadSeleccionado(unidad);
+    abrirModal(true);
+  };
+
+  const abrirModal = (unidad) => {
+    setUnidadSeleccionado(unidad);
+    setShowModal(true);
+  };
+
   const columns = useMemo(() => [
     { Header: 'Edificio', accessor: 'edificio.nombre' },
     { Header: 'Piso', accessor: 'piso' },
@@ -140,11 +163,14 @@ const UnidadesPage = () => {
       accessor: 'acciones',
       Cell: ({ row }) => (
         <>
-          <Button variant="outline-primary" onClick={() => handleEditarUnidad(row.original)}>
-            <FiEdit />
+          <Button variant="outline-secundary" onClick={() => handleOpciones(row.original)} className="ml-2">
+            <SlOptions />
+          </Button>
+          <Button variant="outline-primary" onClick={() => handleEditarUnidad(row.original)} className="ml-2">
+            <FaEdit />
           </Button>
           <Button variant="outline-danger" onClick={() => handleEliminarUnidad(row.original.id)} className="ml-2">
-            <FiTrash2 />
+            <FaTrash  />
           </Button>
         </>
       )
@@ -183,7 +209,7 @@ const UnidadesPage = () => {
         </Col>
         <Col className="d-flex justify-content-end">
           <Button variant="primary" onClick={() => handleAgregarUnidad()}>
-            <FiPlus />
+            <MdOutlineAddHome />
           </Button>
         </Col>
       </Row>
@@ -240,6 +266,13 @@ const UnidadesPage = () => {
         />
       )}
 
+      {showModal && ( <AccionesUnidadModal
+          show={showModal}
+          onHide={() => setShowModal(false)}
+          unidad={unidadSeleccionado}
+          dialogClassName="modal-90w"
+        /> )}
+
       <Modal show={mostrarModalCarga} centered>
         <Modal.Body>
           <div className="text-center">
@@ -250,6 +283,7 @@ const UnidadesPage = () => {
           </div>
         </Modal.Body>
       </Modal>
+
     </Container>
   );
 };

@@ -1,0 +1,58 @@
+.modal-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; /* Permite que los botones se ajusten en varias líneas */
+    align-items: center;
+    justify-content: center; /* Centra los botones horizontalmente */
+    gap: 5px; /* Espacio entre botones */
+    padding: 20px;
+  }
+  
+  .action-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    font-size: 14px;
+    min-width: 120px;
+  }
+  
+  .modal-title {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .close-button {
+    background-color: #d9534f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    font-size: 16px;
+    min-width: 150px;
+  }
+  
+  .info-section {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .info-text {
+    color: #333;
+  }
+  

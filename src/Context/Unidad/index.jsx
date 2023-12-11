@@ -64,26 +64,6 @@ const agregarUnidad = async (unidad) => {
     }
 }
 
-const editarUnidad = async (unidad) => {
-    const token = getToken();
-    if (!token) {
-        console.error('Token is missing.');
-        return;
-    }
-
-    const response = await axios.put(rutaApi + 'editar', unidad, {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    });
-    if (response.status !== 200) {
-        console.error('Error fetching data:', response.status);
-    }
-    else{
-        return response;
-    }
-}
-
 const eliminarUnidad = async (identificador) => {
     const token = getToken();
     if (!token) {
@@ -304,6 +284,26 @@ const obtenerTodas = async () => {
         return response;
     } else {
         console.error('Error fetching data:', response.status);
+        return response;
+    }
+}
+
+const editarUnidad = async (unidad) => {
+    const token = getToken();
+    if (!token) {
+        console.error('Token is missing.');
+        return;
+    }
+    const response = await axios.patch(rutaApi + 'modificarUnidad', unidad, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+    if (response.status !== 200) {
+        console.error('Error fetching data:', response.status);
+        return response;
+    }
+    else{
         return response;
     }
 }

@@ -17,9 +17,11 @@ const response = await axios.get(rutaApi + '/persona?documento=' + documento, {
         },
     });
     if (response.status === 200) {
+        console.log('response.data axios', response.data);
         return response.data;
     } else {
         console.error('Error fetching data:', response.status);
+        return response;
     }
 }
 
@@ -93,6 +95,8 @@ const agregarImagen = async (numero, imagen) => {
     });
     return response;
 }
+
+
 
 export {obtenerReclamosPorDocumento, comentarReclamo, agregarReclamo, ReclamosPorEdificio, ReclamosPorUnidad, reclamosPorNumero,
     cambiarEstado, agregarImagen};
