@@ -31,7 +31,7 @@ const AdminNavbar = () => {
                         <NavDropdown.Item>
                             <NavLink to='/admin/edificios/habitantes' className="nav-link">Habitantes por edificio</NavLink>
                         </NavDropdown.Item>
-                    </NavDropdown>    
+                    </NavDropdown>
                     <NavLink to='/admin/unidad/abm' className="nav-link">Gestionar Unidad</NavLink>
                     <NavDropdown title="Usuarios" id="basic-nav-dropdown">
                         <NavDropdown.Item>
@@ -47,9 +47,6 @@ const AdminNavbar = () => {
                     <NavDropdown title="Reclamos" id="basic-nav-dropdown">
                         <NavDropdown.Item>
                             <NavLink to='/admin/reclamos/lista' className="nav-link">Lista de Reclamos</NavLink>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item>
-                            <NavLink to='/admin/reclamos/nuevo' className="nav-link">Nuevo Reclamo</NavLink>
                         </NavDropdown.Item>
                     </NavDropdown>
                 </Nav>

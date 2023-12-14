@@ -41,6 +41,7 @@ import InquilinosEmpleadoListado from '../Roles/Empleado/Edificio/Inquilinos';
 import DueniosEmpleadoListado from '../Roles/Empleado/Edificio/Duenios';
 import InquilinosEncargadoListado from '../Roles/Encargado/Edificio/Inquilinos';
 import DueniosEncargadoListado from '../Roles/Encargado/Edificio/Duenios';
+import ListadoAdminReclamos from '../Roles/Admin/Reclamos/Listado';
 
 
 const AppRoutes = () => {
@@ -68,7 +69,7 @@ const AppRoutes = () => {
       <Route path="/admin/home" element={<PrivateRoute><AdminHome /></PrivateRoute>} />
       <Route path="/admin/residentes" element={<PrivateRoute><AdminResidentes /></PrivateRoute>} />
       <Route path="/admin/usuario" element={<PrivateRoute><AdminUsuario /></PrivateRoute>} />
-      <Route path="/admin/reclamos" element={<PrivateRoute><AdminReclamos /></PrivateRoute>} />
+      <Route path="/admin/reclamos/lista" element={<PrivateRoute><ListadoAdminReclamos /></PrivateRoute>} />
       <Route path="/admin/edificios/abm" element={<PrivateRoute><AdminEdificios /></PrivateRoute>} />
       <Route path="/admin/unidad/abm" element={<PrivateRoute><AdminUnidades /></PrivateRoute>} />
       <Route path="/admin/unidades/transferencia-unidad" element={<PrivateRoute><AdminUnidades /></PrivateRoute>} />
