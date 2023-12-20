@@ -1,0 +1,14 @@
+.custom-navbar {
+    font-size: 20px; /* Aumenta el tamaño de la fuente */
+    padding: 10px 0; /* Añade más padding para aumentar la altura */
+}
+
+.custom-link {
+    color: #000000; /* Cambia el color de los enlaces */
+    transition: color 0.3s ease-in-out;
+}
+
+.custom-link:hover {
+    color: #004085; /* Color al pasar el mouse */
+    text-decoration: solid underline #004085; /* Subrayado al pasar el mouse */
+}

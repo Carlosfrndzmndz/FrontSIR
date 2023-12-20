@@ -1,0 +1,110 @@
+/* Estilos generales */
+.landing-page {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+/* Sección del Encabezado (Hero) */
+.hero {
+    background: no-repeat center center / cover;
+    text-align: center;
+    padding: 60px 20px;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    color: #ddd;
+}
+
+/* Estilos para los botones */
+.cta {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.cta:hover {
+    background-color: #0056b3;
+}
+
+/* Sección de Características (Features) */
+.features {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 20px;
+    background-color: #f8f8f8;
+}
+
+.feature {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 200px;
+}
+
+.feature h2 {
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+/* Sección de Testimonios */
+.testimonials {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.testimonials blockquote {
+    font-style: italic;
+    color: #555;
+}
+
+.testimonials cite {
+    display: block;
+    margin-top: 10px;
+    color: #333;
+}
+
+/* Sección de Llamada a la Acción (CTA Section) */
+.cta-section {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #007bff;
+    color: white;
+}
+
+/* Pie de Página (Footer) */
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}

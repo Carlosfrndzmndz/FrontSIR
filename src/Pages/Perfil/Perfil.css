@@ -1,0 +1,59 @@
+/* Estilos CSS para Perfil con diseño mejorado */
+.perfil-container {
+    padding-top: 60px; /* Ajusta esto según la altura de tu navbar */
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0); /* Fondo degradado suave */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    border-radius: 10px; /* Bordes redondeados */
+    transition: background-color 0.3s ease;
+  }
+  
+  .perfil-title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2em;
+    font-weight: bold;
+  }
+  
+  .perfil-field {
+    transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Transiciones suaves */
+    padding: 12px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados en los campos */
+    margin-bottom: 10px;
+  }
+  
+  .perfil-field:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave al pasar el cursor */
+    background-color: #f5f5f5; /* Cambia el color de fondo al pasar el cursor */
+  }
+  
+  .perfil-label {
+    color: #333;
+    font-size: 1em;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .perfil-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 4px;
+  }
+  
+  .perfil-status {
+    display: block;
+    font-size: 1em;
+    font-weight: bold;
+  }
+  
+  .verificado {
+    color: #4CAF50;
+  }
+  
+  .no-verificado {
+    color: #F44336;
+  }
+  
