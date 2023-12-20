@@ -1,0 +1,98 @@
+import React, { useState, useEffect } from 'react';
+import { Modal, Button, Form } from 'react-bootstrap';
+
+
+
+const EncargadoForm = ({ onSave, encargadoSeleccionado, onClose }) => {
+  const [encargado, setEncargado] = useState({ nombre: '', tipoDocumento: '', numeroDocumento: '', rol: 'Encargado' });
+  
+
+  useEffect(() => {
+    if (encargadoSeleccionado) {
+      const tipo = encargadoSeleccionado.documento.substring(0, 3);
+      const numero = encargadoSeleccionado.documento.substring(3);
+      setEncargado({ ...encargadoSeleccionado, tipoDocumento: tipo, numeroDocumento: numero });
+    } else {
+      setEncargado({ nombre: '', tipoDocumento: '', numeroDocumento: '', rol: 'Encargado' });
+    }
+  }, [encargadoSeleccionado]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEncargado({ ...encargado, [name]: value });
+  };
+
+  const handleGuardar = () => {
+    
+
+    const encargadoAGuardar = {
+      documento: `${encargado.tipoDocumento}${encargado.numeroDocumento}`,
+      nombre: encargado.nombre,
+      rol: 'Encargado',
+    };
+
+
+    onSave(encargadoAGuardar);
+    onClose();
+  };
+
+  return (
+    <Modal show={true} onHide={onClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>{encargadoSeleccionado ? 'Editar Encargado' : 'Agregar Nuevo Encargado'}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form>
+          <Form.Group controlId="formTipoDocumento">
+            <Form.Label>Tipo Documento</Form.Label>
+            <Form.Select
+              aria-label="Default select example"
+              name="tipoDocumento"
+              value={encargado.tipoDocumento}
+              onChange={handleInputChange}
+              disabled={!!encargadoSeleccionado}
+            >
+              <option value="">Tipo de Documento</option>
+              <option value="DNI">DNI</option>
+              <option value="LE">LE</option>
+              <option value="LC">LC</option>
+              <option value="CI">CI</option>
+              <option value="Pas">Pasaporte</option>
+            </Form.Select>
+          </Form.Group>
+          <Form.Group controlId="formNumeroDocumento">
+            <Form.Label>Número de Documento</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Ingrese el número de documento"
+              name="numeroDocumento"
+              value={encargado.numeroDocumento}
+              onChange={handleInputChange}
+              disabled={!!encargadoSeleccionado} // Deshabilitar este campo también al editar
+            />
+          </Form.Group>
+          <Form.Group controlId="formNombre">
+            <Form.Label>Nombre</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Ingrese el nombre"
+              name="nombre"
+              value={encargado.nombre}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+        </Form>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={onClose}>
+          Cerrar
+        </Button>
+        <Button variant="primary" onClick={handleGuardar}>
+          {encargadoSeleccionado ? 'Actualizar' : 'Guardar'}
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+};
+
+export default EncargadoForm;
